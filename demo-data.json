@@ -1,0 +1,224 @@
+{
+  "shop": {
+    "id": "shop_001",
+    "name": "Hello Plast Shop",
+    "tagline": "Your Trusted Plastic Products Partner",
+    "address": "123 Main Street, City, State - 123456",
+    "phone": "+91 98765 43210",
+    "email": "info@helloplastshop.com",
+    "gst_number": "22AAAAA0000A1Z5",
+    "pan_number": "AAAAA0000A",
+    "opening_hours": "9:00 AM - 8:00 PM",
+    "timezone": "Asia/Kolkata"
+  },
+  "categories": [
+    {
+      "id": "cat_001",
+      "name": "Casseroles",
+      "description": "High-quality cooking casseroles",
+      "image": "categories/casseroles.jpg",
+      "sort_order": 1,
+      "active": true
+    },
+    {
+      "id": "cat_002",
+      "name": "Cookers",
+      "description": "Pressure cookers and cooking vessels",
+      "image": "categories/cookers.jpg",
+      "sort_order": 2,
+      "active": true
+    },
+    {
+      "id": "cat_003",
+      "name": "Kettles",
+      "description": "Electric and stovetop kettles",
+      "image": "categories/kettles.jpg",
+      "sort_order": 3,
+      "active": true
+    },
+    {
+      "id": "cat_004",
+      "name": "Tiffins",
+      "description": "Lunch boxes and food containers",
+      "image": "categories/tiffins.jpg",
+      "sort_order": 4,
+      "active": true
+    },
+    {
+      "id": "cat_005",
+      "name": "Water Jugs",
+      "description": "Water storage and dispensing jugs",
+      "image": "categories/water-jugs.jpg",
+      "sort_order": 5,
+      "active": true
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "Cresto Casserole",
+      "category_id": "cat_001",
+      "sku": "CAS-CRE-001",
+      "price": 1299.00,
+      "cost_price": 899.00,
+      "tax_rate": 0.18,
+      "description": "Premium stainless steel casserole with glass lid",
+      "features": ["Stainless Steel", "Glass Lid", "Oven Safe", "Dishwasher Safe"],
+      "dimensions": "24cm x 24cm x 12cm",
+      "weight": "1.2kg",
+      "stock_quantity": 25,
+      "min_stock_level": 5,
+      "max_stock_level": 100,
+      "supplier": "Cresto Industries",
+      "supplier_code": "SUP-001",
+      "images": [
+        "casseroles/cresto.jpg",
+        "casseroles/cresto_angle1.jpg",
+        "casseroles/cresto_angle2.jpg"
+      ],
+      "active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "prod_002",
+      "name": "Croma Pink Casserole",
+      "category_id": "cat_001",
+      "sku": "CAS-CRO-002",
+      "price": 899.00,
+      "cost_price": 649.00,
+      "tax_rate": 0.18,
+      "description": "Beautiful pink ceramic casserole perfect for serving",
+      "features": ["Ceramic", "Microwave Safe", "Oven Safe", "Beautiful Design"],
+      "dimensions": "20cm x 20cm x 10cm",
+      "weight": "0.8kg",
+      "stock_quantity": 18,
+      "min_stock_level": 5,
+      "max_stock_level": 80,
+      "supplier": "Croma Ceramics",
+      "supplier_code": "SUP-002",
+      "images": [
+        "casseroles/croma pink.jpg"
+      ],
+      "active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn_001",
+      "transaction_number": "TXN-2024-001",
+      "customer_id": null,
+      "customer_name": "Walk-in Customer",
+      "customer_phone": null,
+      "customer_email": null,
+      "items": [
+        {
+          "product_id": "prod_001",
+          "name": "Cresto Casserole",
+          "quantity": 2,
+          "unit_price": 1299.00,
+          "total_price": 2598.00,
+          "tax_amount": 467.64
+        },
+        {
+          "product_id": "prod_002",
+          "name": "Croma Pink Casserole",
+          "quantity": 1,
+          "unit_price": 899.00,
+          "total_price": 899.00,
+          "tax_amount": 161.82
+        }
+      ],
+      "subtotal": 3497.00,
+      "tax_amount": 629.46,
+      "discount_amount": 0.00,
+      "total_amount": 4126.46,
+      "payment_method": "cash",
+      "payment_status": "completed",
+      "cashier_id": "user_001",
+      "cashier_name": "John Doe",
+      "created_at": "2024-01-15T14:30:00Z",
+      "completed_at": "2024-01-15T14:35:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "user_001",
+      "username": "john.doe",
+      "full_name": "John Doe",
+      "email": "john.doe@retailshop.com",
+      "role": "cashier",
+      "permissions": ["view_products", "create_transactions", "view_reports"],
+      "active": true,
+      "last_login": "2024-01-15T14:00:00Z",
+      "created_at": "2024-01-01T09:00:00Z"
+    },
+    {
+      "id": "user_002",
+      "username": "jane.smith",
+      "full_name": "Jane Smith",
+      "email": "jane.smith@retailshop.com",
+      "role": "manager",
+      "permissions": ["view_products", "create_transactions", "view_reports", "manage_inventory", "manage_users"],
+      "active": true,
+      "last_login": "2024-01-15T13:45:00Z",
+      "created_at": "2024-01-01T09:00:00Z"
+    }
+  ],
+      "settings": {
+        "tax": {
+            "gst_rate": 0.18,
+            "gst_name": "GST",
+            "show_tax_breakdown": true
+        },
+        "color_system": {
+            "type": "circle_selection",
+            "colors_per_product": 3,
+            "mix_option": true,
+            "layout": "3x1_grid",
+            "style": "colored_circles"
+        },
+    "currency": {
+      "code": "INR",
+      "symbol": "₹",
+      "decimal_places": 2
+    },
+    "receipt": {
+      "header": "Retail Shop - Your Trusted Shopping Partner",
+      "footer": "Thank you for shopping with us! Visit again.",
+      "show_logo": true,
+      "show_qr_code": true,
+      "show_barcode": false
+    },
+    "printer": {
+      "default_printer": "thermal_printer_001",
+      "auto_print": true,
+      "print_copies": 1
+    },
+    "inventory": {
+      "low_stock_alert": true,
+      "low_stock_threshold": 5,
+      "auto_reorder": false
+    }
+  },
+  "api_endpoints": {
+    "base_url": "http://localhost:3000/api",
+    "version": "v1",
+    "endpoints": {
+      "products": "/products",
+      "categories": "/categories",
+      "transactions": "/transactions",
+      "users": "/users",
+      "inventory": "/inventory",
+      "reports": "/reports",
+      "print": "/print"
+    },
+    "authentication": {
+      "type": "jwt",
+      "header": "Authorization",
+      "prefix": "Bearer"
+    }
+  }
+} 
