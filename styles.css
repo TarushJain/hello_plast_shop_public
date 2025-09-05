@@ -349,13 +349,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Touch-friendly quantity inputs */
 .quantity-input {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #d1d5db;
     border-radius: 8px;
-    padding: 8px 12px;
-    min-height: 44px;
+    padding: 6px 10px;
+    min-height: 40px;
     transition: all 0.2s ease;
     background: white;
     color: #374151;
@@ -374,9 +374,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Cart quantity input specific styles */
 .cart-quantity-input {
-    width: 60px;
-    height: 32px;
-    font-size: 14px;
+    width: 56px;
+    height: 28px;
+    font-size: 13px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #d1d5db;
@@ -419,13 +419,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Size button styles */
 .size-btn {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     text-align: center;
     border: 2px solid #d1d5db;
     border-radius: 6px;
-    padding: 6px 8px;
-    min-height: 32px;
+    padding: 4px 8px;
+    min-height: 28px;
     transition: all 0.2s ease;
     background: white;
     color: #374151;
@@ -628,25 +628,22 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #6b7280;
     font-size: 12px;
     text-align: center;
-    padding: 8px;
+    padding: 2px;
 }
 
 /* Reduce spacing in product cards for compact layout */
 .product-card h3 {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.2rem !important;
+    font-size: 1rem !important;
 }
 
-.product-card p {
-    margin-bottom: 0.75rem !important;
-}
+.product-card p { margin-bottom: 0.35rem !important; }
 
 .product-card .mb-3 {
-    margin-bottom: 0.75rem !important;
-}
-
-.product-card .mb-2 {
     margin-bottom: 0.5rem !important;
 }
+
+.product-card .mb-2 { margin-bottom: 0.3rem !important; }
 
 /* Optimize image quality */
 .product-card img {
@@ -668,14 +665,29 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Compact product card layout */
 .product-card {
-    padding: 0.75rem !important;
+    padding: 0.5rem !important;
 }
 
 .product-card .text-center {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.4rem !important;
 }
 
 /* Optimize color and size button spacing */
 .color-circle, .size-btn {
     margin: 0 1px;
 } 
+
+/* Tablet touch targets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .touch-button { min-height: 56px; font-size: 1.05rem; }
+    .size-btn { min-width: 56px; }
+    .quantity-input { min-height: 46px; font-size: 16px; }
+}
+
+/* Large touch targets for mobile */
+@media (max-width: 767px) {
+    .touch-button { min-height: 54px; font-size: 1.05rem; }
+    .size-btn { min-width: 52px; }
+    .color-circle { width: 32px; height: 32px; }
+    .quantity-input { min-height: 44px; font-size: 16px; }
+}
