@@ -32,13 +32,35 @@
     <!-- Header -->
     <header class="bg-blue-600 text-white p-4 shadow-lg no-print">
         <div class="flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold">Hello Plast Shop</h1>
-                <p class="text-sm opacity-90" id="current-time"></p>
+            <div class="flex items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold">Hello Plast Shop</h1>
+                    <p class="text-sm opacity-90" id="current-time"></p>
+                </div>
+                <div class="hidden md:block">
+                    <input id="search-input" type="text" placeholder="Search products" class="text-sm text-black px-3 py-2 rounded w-64" title="Search by name"/>
+                </div>
             </div>
-            <div class="text-right">
-                <p class="text-lg font-semibold">₹<span id="cart-total">0.00</span></p>
-                <p class="text-sm opacity-90">Total</p>
+            <div class="flex-1"></div>
+            <div class="flex items-center gap-2 justify-end">
+                <div class="hidden md:flex items-center gap-2">
+                    <button class="bg-white/10 hover:bg-white/20 px-3 py-2 rounded touch-button text-sm" onclick="Cart()">
+                        <i class="fas fa-shopping-cart mr-2"></i>Cart
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded touch-button text-sm" onclick="generateBill()">
+                        <i class="fas fa-file-invoice mr-2"></i>Generate Bill
+                    </button>
+                    <span class="ml-2 text-lg font-semibold">₹<span id="cart-total">0.00</span></span>
+                </div>
+                <div class="md:hidden flex items-center gap-2">
+                    <button class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded text-xs" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-600 px-3 py-1.5 rounded text-xs" onclick="generateBill()">
+                        <i class="fas fa-file-invoice"></i>
+                    </button>
+                    <span class="ml-2 text-sm font-semibold">₹<span id="cart-total-mobile">0.00</span></span>
+                </div>
             </div>
         </div>
     </header>
@@ -65,7 +87,7 @@
         </section>
 
         <!-- Cart Section -->
-        <section class="w-96 bg-white shadow-lg p-4 overflow-y-auto">
+        <section id="cart-panel" class="w-96 bg-white shadow-lg p-4 overflow-y-auto hidden">
             <h2 class="text-xl font-bold mb-4">Shopping Cart</h2>
             
             <div id="cart-items" class="space-y-2 mb-4">
@@ -79,7 +101,7 @@
                     <span>₹<span id="subtotal">0.00</span></span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Tax (18%):</span>
+                    <span id="tax-label">Tax (0%):</span>
                     <span>₹<span id="tax">0.00</span></span>
                 </div>
                 <div class="flex justify-between text-lg font-bold">
@@ -88,8 +110,13 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
+            <!-- Tax Input Above Action Buttons -->
             <div class="mt-6 space-y-3">
+                <div class="mb-3">
+                    <label for="cart-tax-input" class="block text-sm font-medium text-gray-700 mb-1">Tax %</label>
+                    <input id="cart-tax-input" type="number" min="0" max="100" step="0.1" value="0" class="text-sm text-black px-3 py-2 rounded w-full" placeholder="Enter tax percent" title="Enter tax percentage" onkeydown="if(event.key==='Enter'){applyCartTax()}" />
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full" onclick="applyCartTax()">Apply Tax</button>
+                </div>
                 <button id="generate-bill-btn" class="w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold touch-button" onclick="generateBill()">
                     <i class="fas fa-print mr-2"></i>Generate Bill
                 </button>
@@ -119,7 +146,7 @@
                 <span>₹<span id="bill-subtotal">0.00</span></span>
             </div>
             <div class="flex justify-between">
-                <span>Tax (18%):</span>
+                <span id="bill-tax-label">Tax (0%):</span>
                 <span>₹<span id="bill-tax">0.00</span></span>
             </div>
             <div class="flex justify-between text-lg font-bold">
