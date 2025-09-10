@@ -1,19 +1,19 @@
 // Product database - In a real app, this would come from a backend API
 const products = [
     // Casseroles
-    /*done*/ { id: 1, name: "Cresto Casserole", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
-    /*done*/{ id: 2, name: "Croma Casserole", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
-    /*done*/{ id: 3, name: "Croma SS Casserole", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
-    /*done*/  { id: 4, name: "Cuba Casserole", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
-    /*done*/{ id: 5, name: "Lotus Casserole", category: "casseroles", image: "casseroles/lotus blue.jpg", colors: ["Blue", "Pink"], sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 } },
-    /*done*/{ id: 6, name: "Onyx Casserole", category: "casseroles", image: "casseroles/onyx1500.png", colors: ["Red", "Green", "Pink"], sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 72, "1500":110, "1700":132 , "3500": 180, "5000": 243 } },
+    /*done*/ { id: 1, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
+    /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
+    /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
+    /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
+    /*done*/{ id: 5, name: "Lotus", category: "casseroles", image: "casseroles/lotus blue.jpg", colors: ["Blue", "Pink"], sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 } },
+    /*done*/{ id: 6, name: "Onyx", category: "casseroles", image: "casseroles/onyx1500.png", colors: ["Red", "Green", "Pink"], sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 72, "1500":110, "1700":132 , "3500": 180, "5000": 243 } },
 
-    /*done*/{ id: 8, name: "Zigma Casserole", category: "casseroles", image: "casseroles/ZIGMA 2000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 } },
-    /*done*/{ id: 9, name: "Zigma Deluxe Casserole ", category: "casseroles", image: "casseroles/ZIGMA DELUXE 3000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330} },
-    /*done*/{ id: 31, name: "Zigma Handi Casserole ", category: "casseroles", image: "casseroles/zigma_handi.jpeg", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320} },
+    /*done*/{ id: 8, name: "Zigma ", category: "casseroles", image: "casseroles/ZIGMA 2000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 } },
+    /*done*/{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "casseroles/ZIGMA DELUXE 3000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330} },
+    /*done*/{ id: 31, name: "Zigma Handi", category: "casseroles", image: "casseroles/zigma_handi.jpeg", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320} },
     // Cookers
-    /*done*/{ id: 10, name: "Handi Steel Cooker", category: "cookers", image: "cookers/handi_page.jpg", colors: ["Silver"], sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350} },
-    /*done*/{ id: 11, name: "Hello Steel Cooker Plain", category: "cookers", image: "cookers/hello_Steel_cooker_plain.jpg", colors: [ "Silver"], sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325} },
+    /*done*/{ id: 10, name: "Handi Steel ", category: "cookers", image: "cookers/handi_page.jpg", colors: ["Silver"], sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350} },
+    /*done*/{ id: 11, name: "Steel Cooker ", category: "cookers", image: "cookers/hello_Steel_cooker_plain.jpg", colors: [ "Silver"], sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325} },
     //{ id: 12, name: "Matki Cooker", category: "cookers", image: "cookers/Matki_cooker.jpg", colors: ["Silver"], sizes: ["1000", "1500", "3000"], prices: { "1000": 399, "1500": 449, "3000": 549 } },
     /*done*/{ id: 13, name: "Matki Steel", category: "cookers", image: "cookers/matki_steel_5Ltr..png", colors: ["Silver"], sizes: ["2", "3", "5","7"], prices: { "2":480, "3":650, "5":690,"7":730} },
     
@@ -25,16 +25,16 @@ const products = [
     // Tiffins
     /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "tiffins/Apple steel-pp.jpg", colors: ["Green", "Red", "Blue"], sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 } },
     /*done*/{ id: 18, name: "Loto", category: "tiffins", image: "tiffins/jolly_tiffin.jpeg", colors: ["Pink", "Red", "Blue"], sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 } },
-    /*done*/{ id: 19, name: "Bonton Tiffin", category: "tiffins", image: "tiffins/BONTON_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 85 } },
-    /*done*/ { id: 20, name: "Cammy 3 Tiffin", category: "tiffins", image: "tiffins/cammy_3_BROWN.jpg", colors: ["Brown", "Green", "Blue"], sizes: ["3", "4"], prices: { "3":248, "4": 315 } },
-    /*done*/{ id: 21, name: "Cherish Tiffin", category: "tiffins", image: "tiffins/Cherish Tifin blue.jpg", colors: ["Blue", "Brown", "Green"], sizes: ["3", "4"], prices: { "3":475, "4":555} },
-    /*done*/ { id: 22, name: "Coral 3 Tiffin", category: "tiffins", image: "tiffins/Corel 3 RED.jpg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220} },
-    /*done*/{ id: 23, name: "Happytime Tiffin", category: "tiffins", image: "tiffins/HAPPYTIME_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 65 } },
-    /*done*/{ id: 24, name: "Leo Tiffin", category: "tiffins", image: "tiffins/LEO_2_ORANGE.jpg", colors: ["Orange", "Red", "Blue"], sizes: ["2", "3"], prices: { "2": 165, "3": 205} },
-    /*done*/ { id: 25, name: "Loto SS Tiffin", category: "tiffins", image: "tiffins/LOTO DELUXE_blue.jpg", colors: ["Blue", "Red", "Black"], sizes: ["3", "4"], prices: { "3":222, "4": 242} },
-    /*done*/ { id: 26, name: "Loto Tiffin", category: "tiffins", image: "tiffins/loto red.jpg", colors: ["Red", "Blue","Green"], sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 } },
-    /*done*/{ id: 27, name: "Reo  Tiffin", category: "tiffins", image: "tiffins/REO_3_TIFFEN.jpeg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3"], prices: { "2": 118, "3": 143} },
-    /*done*/ { id: 28, name: "Zigma Tiffin", category: "tiffins", image: "tiffins/zigma_tiffen_ black.jpg", colors: ["Black", "Red" ], sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 } },
+    /*done*/{ id: 19, name: "Bonton", category: "tiffins", image: "tiffins/BONTON_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 85 } },
+    /*done*/ { id: 20, name: "Cammy 3 ", category: "tiffins", image: "tiffins/cammy_3_BROWN.jpg", colors: ["Brown", "Green", "Blue"], sizes: ["3", "4"], prices: { "3":248, "4": 315 } },
+    /*done*/{ id: 21, name: "Cherish", category: "tiffins", image: "tiffins/Cherish Tifin blue.jpg", colors: ["Blue", "Brown", "Green"], sizes: ["3", "4"], prices: { "3":475, "4":555} },
+    /*done*/ { id: 22, name: "Coral 3", category: "tiffins", image: "tiffins/Corel 3 RED.jpg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220} },
+    /*done*/{ id: 23, name: "Happytime", category: "tiffins", image: "tiffins/HAPPYTIME_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 65 } },
+    /*done*/{ id: 24, name: "Leo ", category: "tiffins", image: "tiffins/LEO_2_ORANGE.jpg", colors: ["Orange", "Red", "Blue"], sizes: ["2", "3"], prices: { "2": 165, "3": 205} },
+    /*done*/ { id: 25, name: "Loto SS", category: "tiffins", image: "tiffins/LOTO DELUXE_blue.jpg", colors: ["Blue", "Red", "Black"], sizes: ["3", "4"], prices: { "3":222, "4": 242} },
+    /*done*/ { id: 26, name: "Loto", category: "tiffins", image: "tiffins/loto red.jpg", colors: ["Red", "Blue","Green"], sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 } },
+    /*done*/{ id: 27, name: "Reo ", category: "tiffins", image: "tiffins/REO_3_TIFFEN.jpeg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3"], prices: { "2": 118, "3": 143} },
+    /*done*/ { id: 28, name: "Zigma ", category: "tiffins", image: "tiffins/zigma_tiffen_ black.jpg", colors: ["Black", "Red" ], sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 } },
     /*done*/{ id: 31, name: "Flora", category: "tiffins", image: "tiffins/flora_tiffin.jpeg", colors: ["Pink", "Red", "Blue"], sizes: ["Steel"], prices: {"Steel":263 } },
     // Water Jugs
     /*done*/{ id: 29, name: "Croma Jug", category: "water jug", image: "water jug/CROMA_JUG_24_RED.jpg", colors: ["Red", "Blue", "Orange"], sizes: ["6", "24"], prices: { "6": 230, "24": 485} },
@@ -144,26 +144,21 @@ function displayProducts(category = 'all') {
                 <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
                 <div class="flex flex-col items-center w-full">
                     ${(() => {
-                        const sizes = product.sizes;
-                        // If only one size, select it by default
-                        let defaultSize = sizes.length === 1 ? sizes[0] : '1500';
-                        if (sizes.length <= 4) {
-                            return `<div class='flex justify-center space-x-2'>${sizes.map(size => `
-                                <button type="button" class="size-btn ${(size === defaultSize) ? 'selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">${size}</button>
-                            `).join('')}</div>`;
-                        } else {
-                            // Split into rows of 4
-                            let rows = [];
-                            for (let i = 0; i < sizes.length; i += 4) {
-                                rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i+4).map(size => `
-                                    <button type="button" class="size-btn ${(size === defaultSize) ? 'selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">${size}</button>
-                                `).join('')}</div>`);
-                            }
-                            return rows.join('');
+                        const sizes = product.sizes || [];
+                        let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+                        let rows = [];
+                        for (let i = 0; i < sizes.length; i += 4) {
+                            rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i+4).map(size => `
+                                <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
+                                    <span>${size}</span>
+                                    <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
+                                </button>
+                            `).join('')}</div>`);
                         }
+                        return rows.join('');
                     })()}
                 </div>
-                <input type="hidden" id="selected-size-${product.id}" value="${product.sizes.length === 1 ? product.sizes[0] : '1500'}">
+                <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
             </div>
             
             <!-- Quick quantity input -->
@@ -171,11 +166,11 @@ function displayProducts(category = 'all') {
                 <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
                 <input type="number" 
                        id="qty-${product.id}"
-                       min="1" 
+                       min="0" 
                        max="10000" 
-                       value="1"
+                       value="0"
                        class="w-full quantity-input"
-                       placeholder="1">
+                       placeholder="0">
             </div>
             
             <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors" 
@@ -228,7 +223,7 @@ function attachSearchHandler() {
             <div class="mb-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
                 <div class="flex justify-center space-x-2">
-                    ${['Mix', ...(product.colors||[])].slice(0,4).map(color => `
+                    ${['Mix', ...(product.colors||[])].slice(0,4).map(color => `do it for 
                         <button type="button" class="color-circle color-circle-${color.toLowerCase().replace(/\\s+/g,'-')}" data-color="${color}" data-product="${product.id}" onclick="selectColor('${product.id}','${color}')" title="${color}"></button>
                     `).join('')}
                 </div>
@@ -572,6 +567,9 @@ function updateCart() {
 // Clear cart
 function clearCart() {
     cart = [];
+    cartTaxPercent = 0;
+    const cartTaxInput = document.getElementById('cart-tax-input');
+    if (cartTaxInput) cartTaxInput.value = 0;
     updateCart();
     showNotification('Cart cleared!');
 }
@@ -591,8 +589,8 @@ function generateBill() {
     const billItems = document.getElementById('bill-items');
     billItems.innerHTML = cart.map(item => `
         <div class="flex justify-between text-sm">
-            <span>${item.name}${item.color ? ` (${item.color})` : ''}${item.size ? ` - ${item.size}` : ''} × ${item.quantity}</span>
-            <span>₹${(item.price * item.quantity).toLocaleString()}</span>
+            <span>${item.name}${item.color ? ` (${item.color})` : ''}${item.size ? ` - ${item.size}` : ''}    (₹${item.price} x ${item.quantity} pieces)</span>
+            <span>= ₹${(item.price * item.quantity).toLocaleString()}</span>
         </div>
     `).join('');
     
