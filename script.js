@@ -1,7 +1,9 @@
 // Product database - In a real app, this would come from a backend API
 const products = [
+    //Packaging
+    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg",colors: ["Brown"], sizes: ["1"], prices: { "1":30 } },
     // Casseroles
-    /*done*/ { id: 1, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
+    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
     /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
     /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
     /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
@@ -45,6 +47,8 @@ const products = [
 let cart = [];
 let currentCategory = 'all';
 let cartTaxPercent = 0; // Tax percent for cart popup
+// Add this global variable for discount percent
+let cartDiscountPercent = 0; // Discount percent for cart popup
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
@@ -72,6 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cartTaxInput) {
         cartTaxInput.addEventListener('input', function() {
             cartTaxPercent = parseFloat(cartTaxInput.value) || 0;
+            updateCart();
+        });
+    }
+    // Attach handler for cart discount input
+    const cartDiscountInput = document.getElementById('cart-discount-input');
+    if (cartDiscountInput) {
+        cartDiscountInput.addEventListener('input', function() {
+            cartDiscountPercent = parseFloat(cartDiscountInput.value) || 0;
             updateCart();
         });
     }
@@ -436,7 +448,8 @@ function addToCartWithQuantityAndColor(productId) {
         showNotification(`${product.name} (${selectedColor}, ${selectedSize}) added to cart! (Quantity: ${quantity})`);
     }
 
-    quantityInput.value = 1;
+    // After adding/updating cart item, reset quantity input to 0 (not 1)
+    quantityInput.value = 0;
     selectedColorInput.value = 'Mix';
     selectedSizeInput.value = '1500';
 
@@ -550,26 +563,35 @@ function updateCart() {
         return sum + (isNaN(itemTotal) ? 0 : itemTotal);
     }, 0);
     const taxRate = cartTaxPercent / 100;
+    const discountRate = cartDiscountPercent / 100;
     const tax = subtotal * taxRate;
-    const total = subtotal + tax;
+    const discount = subtotal * discountRate;
+    const total = subtotal + tax - discount;
     subtotalElement.textContent = subtotal.toFixed(2);
     const taxElement = document.getElementById('tax');
     if (taxElement) taxElement.textContent = tax.toFixed(2);
+    const discountElement = document.getElementById('discount');
+    if (discountElement) discountElement.textContent = discount.toFixed(2);
     totalElement.textContent = total.toFixed(2);
     cartTotalElement.textContent = total.toFixed(2);
     const cartTotalMobileElement = document.getElementById('cart-total-mobile');
     if (cartTotalMobileElement) cartTotalMobileElement.textContent = total.toFixed(2);
-    // Update tax label
+    // Update tax and discount labels
     const taxLabel = document.getElementById('tax-label');
     if (taxLabel) taxLabel.textContent = `Tax (${cartTaxPercent.toFixed(1)}%):`;
+    const discountLabel = document.getElementById('discount-label');
+    if (discountLabel) discountLabel.textContent = `Discount (${cartDiscountPercent.toFixed(1)}%):`;
 }
 
 // Clear cart
 function clearCart() {
     cart = [];
     cartTaxPercent = 0;
+    cartDiscountPercent = 0;
     const cartTaxInput = document.getElementById('cart-tax-input');
     if (cartTaxInput) cartTaxInput.value = 0;
+    const cartDiscountInput = document.getElementById('cart-discount-input');
+    if (cartDiscountInput) cartDiscountInput.value = 0;
     updateCart();
     showNotification('Cart cleared!');
 }
@@ -596,13 +618,18 @@ function generateBill() {
     
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const taxRate = cartTaxPercent / 100;
+    const discountRate = cartDiscountPercent / 100;
     const tax = subtotal * taxRate;
-    const total = subtotal + tax;
+    const discount = subtotal * discountRate;
+    const total = subtotal + tax - discount;
     document.getElementById('bill-subtotal').textContent = subtotal.toFixed(2);
     document.getElementById('bill-tax').textContent = tax.toFixed(2);
+    document.getElementById('bill-discount').textContent = discount.toFixed(2);
     document.getElementById('bill-total').textContent = total.toFixed(2);
     const billTaxLabel = document.getElementById('bill-tax-label');
     if (billTaxLabel) billTaxLabel.textContent = `Tax (${cartTaxPercent.toFixed(1)}%):`;
+    const billDiscountLabel = document.getElementById('bill-discount-label');
+    if (billDiscountLabel) billDiscountLabel.textContent = `Discount (${cartDiscountPercent.toFixed(1)}%):`;
     // Prepare bill data for future printer integration
     const billData = {
         shopName: "Hello Plast Shop",
@@ -611,6 +638,7 @@ function generateBill() {
         items: cart,
         subtotal: subtotal,
         tax: tax,
+        discount: discount,
         total: total
     };
     // Send to printer (placeholder for future integration)
