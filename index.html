@@ -11,8 +11,24 @@
         @media print {
             .no-print { display: none !important; }
             .print-only { display: block !important; }
+            /* Try to hide browser print headers where supported */
+            @page { margin: 6mm; }
+            /* Some browsers add headers/footers; this attempts to hide them in supported engines */
+            header, .site-title-print { display: none !important; }
         }
         .print-only { display: none; }
+        /* Print specific: reduce margins and tighten layout */
+        @page {
+            size: auto;
+            margin: 6mm; /* reduce default margins */
+        }
+        @media print {
+            body { margin: 0; padding: 0; }
+            #print-bill { width: 100%; padding: 0; margin: 0; font-size: 11px; }
+            #print-bill table { width: 100%; border-collapse: collapse; font-size: 11px; }
+            #print-bill th, #print-bill td { padding: 4px 6px; }
+            #print-bill thead th { font-weight: 600; }
+        }
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -136,40 +152,45 @@
     </main>
 
     <!-- Print Bill Template -->
-    <div id="print-bill" class="print-only p-8 max-w-md mx-auto">
-        <div class="text-center border-b-2 border-gray-300 pb-4 mb-4">
-            <h1 class="text-2xl font-bold">Hello Plast Shop</h1>
-            <p class="text-sm text-gray-500" id="bill-date"></p>
-            <p class="text-sm text-gray-500" id="bill-time"></p>
-        </div>
-        
-        <div id="bill-items" class="space-y-2 mb-4">
-            <!-- Bill items will be populated here -->
-        </div>
-        
-        <div class="border-t pt-4 space-y-2">
-            <div class="flex justify-between">
-                <span>Subtotal:</span>
-                <span>₹<span id="bill-subtotal">0.00</span></span>
+    <div id="print-bill" class="print-only" style="width: 100%; padding: 0; margin: 0;">
+        <div style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">
+                <div>
+                    <span id="bill-date"></span>
+                    <span id="bill-time" style="display:block; font-size:0.9rem; margin-top:4px;"></span>
+                </div>
             </div>
-            <div class="flex justify-between">
-                <span id="bill-tax-label">Tax (0%):</span>
-                <span>₹<span id="bill-tax">0.00</span></span>
-            </div>
-            <div class="flex justify-between">
-                <span id="bill-discount-label">Discount (0%):</span>
-                <span>₹<span id="bill-discount">0.00</span></span>
-            </div>
-            <div class="flex justify-between text-lg font-bold">
-                <span>Total:</span>
-                <span>₹<span id="bill-total">0.00</span></span>
-            </div>
-        </div>
-        
-        <div class="text-center mt-8 pt-4 border-t">
-            <p class="text-sm text-gray-600">Thank you for shopping with us!</p>
-            <p class="text-xs text-gray-500">Visit again</p>
-        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 1px solid #000;">
+                    <th style="text-align: left; padding: 8px;">Product Name</th>
+                    <th style="text-align: center; padding: 8px;">Size</th>
+                    <th style="text-align: center; padding: 8px;">Pieces</th>
+                    <th style="text-align: center; padding: 8px;">Price/Piece</th>
+                    <th style="text-align: right; padding: 8px;">Total</th>
+                </tr>
+            </thead>
+            <tbody id="bill-items">
+                <!-- Items will be dynamically added here -->
+            </tbody>
+            <tfoot>
+                <tr style="border-top: 1px solid #000;">
+                    <td colspan="4" style="text-align: right; padding: 8px;"><span id="bill-subtotal-label">Subtotal:</span></td>
+                    <td style="text-align: right; padding: 8px;" id="bill-subtotal"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right; padding: 8px;"><span id="bill-tax-label">Tax (0%):</span></td>
+                    <td style="text-align: right; padding: 8px;" id="bill-tax"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right; padding: 8px;"><span id="bill-discount-label">Discount (0%):</span></td>
+                    <td style="text-align: right; padding: 8px;" id="bill-discount"></td>
+                </tr>
+                <tr style="border-top: 2px solid #000;">
+                    <td colspan="4" style="text-align: right; padding: 8px; font-weight: bold;">Total:</td>
+                    <td style="text-align: right; padding: 8px; font-weight: bold;" id="bill-total"></td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 
     <script src="script.js"></script>
