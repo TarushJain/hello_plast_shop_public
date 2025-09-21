@@ -605,16 +605,30 @@ function generateBill() {
     
     // Populate bill template
     const now = new Date();
-    document.getElementById('bill-date').textContent = now.toLocaleDateString('en-IN');
-    document.getElementById('bill-time').textContent = now.toLocaleTimeString('en-IN');
-    
+    const billDateEl = document.getElementById('bill-date');
+    const billTimeEl = document.getElementById('bill-time');
+    if (billDateEl) billDateEl.textContent = now.toLocaleDateString('en-IN');
+    if (billTimeEl) billTimeEl.textContent = now.toLocaleTimeString('en-IN');
+
     const billItems = document.getElementById('bill-items');
-    billItems.innerHTML = cart.map(item => `
-        <div class="flex justify-between text-sm">
-            <span>${item.name}${item.color ? ` (${item.color})` : ''}${item.size ? ` - ${item.size}` : ''}    (₹${item.price} x ${item.quantity} pieces)</span>
-            <span>= ₹${(item.price * item.quantity).toLocaleString()}</span>
-        </div>
-    `).join('');
+    if (billItems) {
+        // Build table rows for each item
+        billItems.innerHTML = cart.map(item => {
+            const name = item.name || '';
+            const size = item.size || '';
+            const qty = Number(item.quantity) || 0;
+            const price = Number(item.price) || 0;
+            const lineTotal = qty * price;
+            return `
+                <tr>
+                    <td style="padding:8px">${name}</td>
+                    <td style="text-align:center;padding:8px">${size}</td>
+                    <td style="text-align:center;padding:8px">${qty}</td>
+                    <td style="text-align:center;padding:8px">₹${price.toFixed(2)}</td>
+                    <td style="text-align:right;padding:8px">₹${lineTotal.toFixed(2)}</td>
+                </tr>`;
+        }).join('');
+    }
     
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const taxRate = cartTaxPercent / 100;
@@ -622,13 +636,18 @@ function generateBill() {
     const tax = subtotal * taxRate;
     const discount = subtotal * discountRate;
     const total = subtotal + tax - discount;
-    document.getElementById('bill-subtotal').textContent = subtotal.toFixed(2);
-    document.getElementById('bill-tax').textContent = tax.toFixed(2);
-    document.getElementById('bill-discount').textContent = discount.toFixed(2);
-    document.getElementById('bill-total').textContent = total.toFixed(2);
+    const billSubtotalEl = document.getElementById('bill-subtotal');
+    const billTaxEl = document.getElementById('bill-tax');
+    const billDiscountEl = document.getElementById('bill-discount');
+    const billTotalEl = document.getElementById('bill-total');
     const billTaxLabel = document.getElementById('bill-tax-label');
-    if (billTaxLabel) billTaxLabel.textContent = `Tax (${cartTaxPercent.toFixed(1)}%):`;
     const billDiscountLabel = document.getElementById('bill-discount-label');
+
+    if (billSubtotalEl) billSubtotalEl.textContent = subtotal.toFixed(2);
+    if (billTaxEl) billTaxEl.textContent = tax.toFixed(2);
+    if (billDiscountEl) billDiscountEl.textContent = discount.toFixed(2);
+    if (billTotalEl) billTotalEl.textContent = total.toFixed(2);
+    if (billTaxLabel) billTaxLabel.textContent = `Tax (${cartTaxPercent.toFixed(1)}%):`;
     if (billDiscountLabel) billDiscountLabel.textContent = `Discount (${cartDiscountPercent.toFixed(1)}%):`;
     // Prepare bill data for future printer integration
     const billData = {
@@ -641,9 +660,25 @@ function generateBill() {
         discount: discount,
         total: total
     };
-    // Send to printer (placeholder for future integration)
-    sendToPrinter(billData);
     // Print the bill
+    // Temporarily clear document title to avoid printing page title/header in some browsers
+    const oldTitle = document.title;
+    try {
+        document.title = '';
+    } catch (e) {
+        // ignore
+    }
+
+    // Some browsers include page headers/footers controlled by the print dialog and cannot be fully removed by JS.
+    // Clearing the title reduces the chance of the site name appearing; users should disable headers/footers in print dialog for final receipts.
+
+    // Use onafterprint to restore title
+    function restoreTitle() {
+        try { document.title = oldTitle; } catch (e) {}
+        window.removeEventListener('afterprint', restoreTitle);
+    }
+    window.addEventListener('afterprint', restoreTitle);
+
     window.print();
     showNotification('Bill generated successfully!');
 }
