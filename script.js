@@ -1,7 +1,7 @@
 // Product database - In a real app, this would come from a backend API
 const products = [
     //Packaging
-    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg",colors: ["Brown"], sizes: ["1"], prices: { "1":305 } },
+    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg",colors: ["Brown"], sizes: ["1"], prices: { "1":310 } },
     // Casseroles
     /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
     /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
@@ -87,7 +87,34 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCart();
         });
     }
+
+        // Prevent pinch-zoom and double-tap zoom on iOS/large tablets
+        preventZoomOnTouchDevices();
 });
+
+    // Prevent pinch and double-tap zoom on touch devices
+    function preventZoomOnTouchDevices() {
+        let lastTouchEnd = 0;
+
+        document.addEventListener('touchstart', function (e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', function (e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        // Disable gesturestart which is fired on iOS when pinching
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+    }
 
 // Setup keyboard shortcuts for better UX
 function setupKeyboardShortcuts() {
@@ -783,4 +810,3 @@ function applyCartTax() {
         updateCart();
     }
 }
-
