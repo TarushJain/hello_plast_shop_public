@@ -566,8 +566,7 @@ function updateCart() {
         <div class="cart-item bg-gray-50 rounded-lg p-3 border">
             <div class="flex justify-between items-center mb-2">
                 <div>
-                    <h4 class="font-semibold text-sm">${item.name}</h4>
-                    ${item.color ? `<p class="text-xs text-gray-600">Color: <span class="font-medium">${item.color}</span></p>` : ''}
+                    <h4 class="font-semibold text-sm">${(item.name||'').trim()}${item.color ? '(' + item.color + ')' : ''}</h4>
                     ${item.size ? `<p class="text-xs text-gray-600">Size: <span class="font-medium">${item.size}</span></p>` : ''}
                 </div>
                 <button class="text-red-500 hover:text-red-700" onclick="removeFromCart('${item.cartItemId || item.id}')">
@@ -653,14 +652,15 @@ function generateBill() {
     if (billItems) {
         // Build table rows for each item
         billItems.innerHTML = cart.map(item => {
-            const name = item.name || '';
+            const name = (item.name|| '').trim();
+            const nameWithColor = name + (item.color ? '(' + item.color + ')' : '');
             const size = item.size || '';
             const qty = Number(item.quantity) || 0;
             const price = Number(item.price) || 0;
             const lineTotal = qty * price;
             return `
                 <tr>
-                    <td style="padding:8px">${name}</td>
+                    <td style="padding:8px">${nameWithColor}</td>
                     <td style="text-align:center;padding:8px">${size}</td>
                     <td style="text-align:center;padding:8px">${qty}</td>
                     <td style="text-align:center;padding:8px">₹${price.toFixed(2)}</td>
