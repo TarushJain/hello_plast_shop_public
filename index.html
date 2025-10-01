@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
             <title>Hello Plast Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -33,6 +33,25 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1rem;
+        }
+        /* Prevent iOS auto-zoom on inputs and ensure full-screen fit on large tablets */
+        html, body {
+            height: 100%;
+            -webkit-text-size-adjust: 100%; /* prevent font-size adjustments on orientation change */
+            touch-action: manipulation;
+            overscroll-behavior: none;
+        }
+        main {
+            height: calc(100vh - 64px); /* keep header visible and main fit to viewport */
+            overflow: hidden;
+        }
+        section.flex-1 { /* product/catalog area should scroll internally */
+            height: 100%;
+            overflow-y: auto;
+        }
+        /* Make inputs >=16px to avoid iOS zoom when focusing */
+        input, textarea, .form-input, .quantity-input, .cart-quantity-input {
+            font-size: 16px !important;
         }
         .touch-button {
             min-height: 60px;
