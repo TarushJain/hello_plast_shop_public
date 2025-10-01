@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Prevent pinch-zoom and double-tap zoom on iOS/large tablets
         preventZoomOnTouchDevices();
+        // Ensure header height CSS variable is set
+        updateHeaderHeightCSSVar();
+        window.addEventListener('resize', updateHeaderHeightCSSVar);
+        window.addEventListener('orientationchange', updateHeaderHeightCSSVar);
 });
 
     // Prevent pinch and double-tap zoom on touch devices
@@ -136,6 +140,14 @@ function setupKeyboardShortcuts() {
             toggleCart();
         }
     });
+}
+
+// Update CSS variable --header-height to match the header element's height
+function updateHeaderHeightCSSVar() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    const height = header.getBoundingClientRect().height + 'px';
+    document.documentElement.style.setProperty('--header-height', height);
 }
 
 // Update current time
