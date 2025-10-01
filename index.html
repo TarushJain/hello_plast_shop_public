@@ -41,8 +41,18 @@
             touch-action: manipulation;
             overscroll-behavior: none;
         }
+        /* Make header fixed at top */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+        /* main uses CSS variable for header height so content is not hidden under fixed header */
         main {
-            height: calc(100vh - 64px); /* keep header visible and main fit to viewport */
+            padding-top: var(--header-height, 64px);
+            height: calc(100vh - var(--header-height, 64px)); /* keep header visible and main fit to viewport */
             overflow: hidden;
         }
         section.flex-1 { /* product/catalog area should scroll internally */
