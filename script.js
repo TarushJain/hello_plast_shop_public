@@ -93,7 +93,6 @@ const products = [
     /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
     /*done*/{ id: 5, name: "Lotus", category: "casseroles", image: "casseroles/lotus blue.jpg", colors: ["Blue", "Pink"], sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 } },
     /*done*/{ id: 6, name: "Onyx", category: "casseroles", image: "casseroles/onyx1500.png", colors: ["Red", "Green", "Pink"], sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 72, "1500":110, "1700":132 , "3500": 180, "5000": 243 } },
-
     /*done*/{ id: 8, name: "Zigma ", category: "casseroles", image: "casseroles/ZIGMA 2000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 } },
     /*done*/{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "casseroles/ZIGMA DELUXE 3000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330} },
     /*done*/{ id: 31, name: "Zigma Handi", category: "casseroles", image: "casseroles/zigma_handi.jpeg", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320} },
@@ -129,6 +128,7 @@ const products = [
 
 // Global variables
 let cart = [];
+let isCompactView = false; // Track 'No Photo View' state
 let currentCategory = 'all';
 let cartTaxPercent = 0; // Tax percent for cart popup
 // Add this global variable for discount percent
@@ -143,7 +143,24 @@ document.addEventListener('DOMContentLoaded', function() {
     leftButtons.forEach(button => button.remove());
 
     updateTime();
-    displayProducts();
+        displayProducts();
+        // Add No Photo View toggle
+        const headerRow = document.querySelector('header .flex.items-center.gap-4');
+        if (headerRow) {
+            let toggle = document.createElement('button');
+            toggle.id = 'no-photo-toggle';
+            toggle.className = 'bg-gray-300 text-gray-700 px-4 py-2 rounded touch-button ml-2';
+            toggle.textContent = 'No Photo View';
+            toggle.onclick = function() {
+                isCompactView = !isCompactView;
+                displayProducts(currentCategory);
+                toggle.classList.toggle('bg-blue-500', isCompactView);
+                toggle.classList.toggle('text-white', isCompactView);
+                toggle.classList.toggle('bg-gray-300', !isCompactView);
+                toggle.classList.toggle('text-gray-700', !isCompactView);
+            };
+            headerRow.appendChild(toggle);
+        }
     setInterval(updateTime, 1000);
     
     // Add keyboard shortcuts for quantity input
@@ -172,37 +189,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-        // Prevent pinch-zoom and double-tap zoom on iOS/large tablets
-        preventZoomOnTouchDevices();
-        // Ensure header height CSS variable is set
-        updateHeaderHeightCSSVar();
-        window.addEventListener('resize', updateHeaderHeightCSSVar);
-        window.addEventListener('orientationchange', updateHeaderHeightCSSVar);
+    // Prevent pinch-zoom and double-tap zoom on iOS/large tablets
+    preventZoomOnTouchDevices();
+    // Ensure header height CSS variable is set
+    updateHeaderHeightCSSVar();
+    window.addEventListener('resize', updateHeaderHeightCSSVar);
+    window.addEventListener('orientationchange', updateHeaderHeightCSSVar);
 });
 
-    // Prevent pinch and double-tap zoom on touch devices
-    function preventZoomOnTouchDevices() {
-        let lastTouchEnd = 0;
+// Prevent pinch and double-tap zoom on touch devices
+function preventZoomOnTouchDevices() {
+    let lastTouchEnd = 0;
 
-        document.addEventListener('touchstart', function (e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchend', function (e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, { passive: false });
-
-        // Disable gesturestart which is fired on iOS when pinching
-        document.addEventListener('gesturestart', function (e) {
+    document.addEventListener('touchstart', function (e) {
+        if (e.touches.length > 1) {
             e.preventDefault();
-        });
-    }
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchend', function (e) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            e.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
+
+    // Disable gesturestart which is fired on iOS when pinching
+    document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+    });
+}
 
 // Setup keyboard shortcuts for better UX
 function setupKeyboardShortcuts() {
@@ -248,73 +265,92 @@ function displayProducts(category = 'all') {
     const productGrid = document.getElementById('product-grid');
     const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
     
-    productGrid.innerHTML = filteredProducts.map(product => `
-        <div class="product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
-            <div class="text-center mb-2">
-                <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
-            </div>
-            <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
-            <!-- Price removed from product card -->
-            <!-- Color selection -->
-            <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
-                <div class="flex justify-center space-x-2">
-                    ${['Mix', ...product.colors].slice(0, 4).map(color => `
-                        <button type="button" 
-                                class="color-circle color-circle-${color.toLowerCase().replace(/\\s+/g, '-')}${color==='Mix' ? ' selected' : ''}" 
-                                data-color="${color}" 
-                                data-product="${product.id}"
-                                onclick="selectColor('${product.id}', '${color}')"
-                                title="${color}">
-                            ${color==='Mix' ? '<span class=\\"color-circle-mix-text\\">M</span>' : ''}
-                        </button>
-                    `).join('')}
+    if (isCompactView) {
+        // Dense, text-only mode
+        productGrid.innerHTML = filteredProducts.map(product => {
+            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-1 flex items-center'>`;
+            html += `<span class='font-semibold text-sm flex-1'>${product.name.trim()}</span>`;
+            html += `<span class='flex gap-1 ml-2'>` + ['Mix', ...(product.colors||[])].slice(0,4).map(color => `
+                <button type='button' class='color-circle color-circle-${color.toLowerCase().replace(/\s+/g,'-')}' data-color='${color}' data-product='${product.id}' onclick="selectColor('${product.id}','${color}')" title='${color}' style='width:18px;height:18px;border-radius:50%;border:1px solid #ccc;'></button>
+            `).join('') + `</span>`;
+            html += `<span class='flex gap-1 ml-2'>` + (product.sizes||[]).map(size => `
+                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${product.prices[size]}</span>
+            `).join('') + `</span>`;
+            html += `<input type='number' id='qty-${product.id}' min='1' max='10000' value='1' class='ml-2 w-16 quantity-input text-xs px-1 py-0.5' placeholder='1'>`;
+            html += `<button class='ml-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            html += `</div>`;
+            return html;
+        }).join('');
+        productGrid.style.display = 'block';
+    } else {
+        productGrid.innerHTML = filteredProducts.map(product => `
+            <div class="product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+                <div class="text-center mb-2">
+                    <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
                 </div>
-                <input type="hidden" id="selected-color-${product.id}" value="Mix">
-            </div>
-            
-            <!-- Size selection -->
-            <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
-                <div class="flex flex-col items-center w-full">
-                    ${(() => {
-                        const sizes = product.sizes || [];
-                        let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
-                        let rows = [];
-                        for (let i = 0; i < sizes.length; i += 4) {
-                            rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i+4).map(size => `
-                                <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
-                                    <span>${size}</span>
-                                    <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
-                                </button>
-                            `).join('')}</div>`);
-                        }
-                        return rows.join('');
-                    })()}
+                <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
+                <!-- Price removed from product card -->
+                <!-- Color selection -->
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
+                    <div class="flex justify-center space-x-2">
+                        ${['Mix', ...product.colors].slice(0, 4).map(color => `
+                            <button type="button" 
+                                    class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color==='Mix' ? ' selected' : ''}" 
+                                    data-color="${color}" 
+                                    data-product="${product.id}"
+                                    onclick="selectColor('${product.id}', '${color}')"
+                                    title="${color}">
+                                ${color==='Mix' ? '<span class=\"color-circle-mix-text\">M</span>' : ''}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="selected-color-${product.id}" value="Mix">
                 </div>
-                <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
+                
+                <!-- Size selection -->
+                <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
+                    <div class="flex flex-col items-center w-full">
+                        ${(() => {
+                            const sizes = product.sizes || [];
+                            let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+                            let rows = [];
+                            for (let i = 0; i < sizes.length; i += 4) {
+                                rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i+4).map(size => `
+                                    <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
+                                        <span>${size}</span>
+                                        <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
+                                    </button>
+                                `).join('')}</div>`);
+                            }
+                            return rows.join('');
+                        })()}
+                    </div>
+                    <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
+                </div>
+                
+                <!-- Quick quantity input -->
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
+                    <input type="number" 
+                           id="qty-${product.id}"
+                           min="0" 
+                           max="10000" 
+                           value="0"
+                           class="w-full quantity-input"
+                           placeholder="0">
+                </div>
+                
+                <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors" 
+                        onclick="addToCartWithQuantityAndColor(${product.id})">
+                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                </button>
             </div>
-            
-            <!-- Quick quantity input -->
-            <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-                <input type="number" 
-                       id="qty-${product.id}"
-                       min="0" 
-                       max="10000" 
-                       value="0"
-                       class="w-full quantity-input"
-                       placeholder="0">
-            </div>
-            
-            <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors" 
-                    onclick="addToCartWithQuantityAndColor(${product.id})">
-                <i class="fas fa-plus mr-2"></i>Add to Cart
-            </button>
-        </div>
-    `).join('');
-    
+        `).join('');
+        productGrid.style.display = '';
+    }
     // Update category button styles
     updateCategoryButtons(category);
 }
@@ -336,53 +372,96 @@ function filterCategory(category) {
     displayProducts(category);
 }
 
-// Search products by name
+// Search products by name/category (fixed logic)
 function attachSearchHandler() {
     const input = document.getElementById('search-input');
     if (!input) return;
+
     input.addEventListener('input', () => {
         const q = input.value.trim().toLowerCase();
+
+        // If empty, just show current category as before
+        if (q === "") {
+            displayProducts(currentCategory);
+            return;
+        }
+
+        // Case‑insensitive "contains" search on name and category
+        const filtered = products.filter(p => {
+            const name = (p.name || "").trim().toLowerCase();
+            const category = (p.category || "").trim().toLowerCase();
+            return name.includes(q) || category.includes(q);
+        });
+
         const productGrid = document.getElementById('product-grid');
-        const list = q ? products.filter(p => p.name.toLowerCase().includes(q)) : products;
-        // simple reuse of renderer with temporary category-agnostic filtering
-        const backup = currentCategory;
-        currentCategory = 'all';
-        const html = list.map(product => `
-        <div class="product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
-            <div class="text-center mb-2">
-                <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
-            </div>
-            <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
-            <p class="text-2xl font-bold text-green-600 text-center mb-2">₹${product.price.toLocaleString()}</p>
-            <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
-                <div class="flex justify-center space-x-2">
-                    ${['Mix', ...(product.colors||[])].slice(0,4).map(color => `do it for 
-                        <button type="button" class="color-circle color-circle-${color.toLowerCase().replace(/\\s+/g,'-')}" data-color="${color}" data-product="${product.id}" onclick="selectColor('${product.id}','${color}')" title="${color}"></button>
-                    `).join('')}
+        productGrid.innerHTML = "";
+        filtered.forEach(product => {
+            const div = document.createElement('div');
+            div.className = "product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow";
+            div.innerHTML = `
+                <div class="text-center mb-2">
+                    <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
                 </div>
-                <input type="hidden" id="selected-color-${product.id}" value="Mix">
-            </div>
-            <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
-                <div class="flex justify-center space-x-2">
-                    ${(product.sizes||[]).map(size => `
-                        <button type="button" class="size-btn" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}','${size}')">${size}</button>
-                    `).join('')}
+                <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
+
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
+                    <div class="flex justify-center space-x-2">
+                        ${['Mix', ...(product.colors || [])].slice(0, 4).map(color => `
+                            <button type="button"
+                                    class="color-circle color-circle-${color.toLowerCase().replace(/\\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
+                                    data-color="${color}"
+                                    data-product="${product.id}"
+                                    onclick="selectColor('${product.id}', '${color}')"
+                                    title="${color}">
+                                ${color === 'Mix' ? '<span class="color-circle-mix-text">M</span>' : ''}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="selected-color-${product.id}" value="Mix">
                 </div>
-                <input type="hidden" id="selected-size-${product.id}" value="">
-            </div>
-            <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-                <input type="number" id="qty-${product.id}" min="1" max="10000" value="1" class="w-full quantity-input" placeholder="1">
-            </div>
-            <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors" onclick="addToCartWithQuantityAndColor(${product.id})">
-                <i class="fas fa-plus mr-2"></i>Add to Cart
-            </button>
-        </div>`).join('');
-        productGrid.innerHTML = html;
-        currentCategory = backup;
+
+                <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
+                    <div class="flex flex-col items-center w-full">
+                        ${(() => {
+                            const sizes = product.sizes || [];
+                            let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+                            let rows = [];
+                            for (let i = 0; i < sizes.length; i += 4) {
+                                rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i + 4).map(size => `
+                                    <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}"
+                                            data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
+                                        <span>${size}</span>
+                                        <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
+                                    </button>
+                                `).join('')}</div>`);
+                            }
+                            return rows.join('');
+                        })()}
+                    </div>
+                    <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
+                </div>
+
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
+                    <input type="number"
+                           id="qty-${product.id}"
+                           min="0"
+                           max="10000"
+                           value="0"
+                           class="w-full quantity-input"
+                           placeholder="0">
+                </div>
+
+                <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors"
+                        onclick="addToCartWithQuantityAndColor(${product.id})">
+                    <i class="fas fa-plus mr-2"></i>Add to Cart
+                </button>
+            `;
+            productGrid.appendChild(div);
+        });
     });
 }
 
@@ -792,9 +871,6 @@ function generateBill() {
         // ignore
     }
 
-    // Some browsers include page headers/footers controlled by the print dialog and cannot be fully removed by JS.
-    // Clearing the title reduces the chance of the site name appearing; users should disable headers/footers in print dialog for final receipts.
-
     // Use onafterprint to restore title
     function restoreTitle() {
         try { document.title = oldTitle; } catch (e) {}
@@ -808,26 +884,8 @@ function generateBill() {
 
 // Placeholder function for future printer integration
 function sendToPrinter(billData) {
-    // This function will be connected to a local printer server or Electron print function
     console.log('Sending to printer:', billData);
-    
-    // Future integration examples:
-    // - Send to local printer server (Node.js/Python)
-    // - Use Electron's print functionality
-    // - Send to thermal printer via USB/serial
-    // - Send to network printer
-    
-    // Example for future implementation:
-    /*
-    fetch('/api/print', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(billData)
-    });
-    */
 }
-
-// Read tax percent from header inputs (desktop/mobile)
 
 // Show notification
 function showNotification(message, type = 'success') {
@@ -848,11 +906,6 @@ function showNotification(message, type = 'success') {
 // Placeholder for future backend API integration
 async function fetchProductsFromAPI() {
     try {
-        // This would be replaced with actual API calls
-        // const response = await fetch('/api/products');
-        // const products = await response.json();
-        // return products;
-        
         console.log('Fetching products from API...');
         return products; // For now, return local data
     } catch (error) {
@@ -864,14 +917,6 @@ async function fetchProductsFromAPI() {
 // Placeholder for future backend API integration
 async function saveTransactionToAPI(transactionData) {
     try {
-        // This would be replaced with actual API calls
-        // const response = await fetch('/api/transactions', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(transactionData)
-        // });
-        // return await response.json();
-        
         console.log('Saving transaction to API:', transactionData);
         return { success: true, id: Date.now() }; // Mock response
     } catch (error) {
