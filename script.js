@@ -1,3 +1,87 @@
+// Format bill as plain text for 80mm thermal printer (48 chars width)
+function formatThermalReceipt(cart, totals, shopInfo) {
+    const width = 48;
+    const line = (ch = '-') => ch.repeat(width);
+    const center = (text) => {
+        text = text.trim();
+        const pad = Math.floor((width - text.length) / 2);
+        return ' '.repeat(Math.max(0, pad)) + text + ' '.repeat(Math.max(0, width - text.length - pad));
+    };
+    let receipt = '';
+    receipt += center(shopInfo.name) + '\n';
+    if (shopInfo.address) receipt += center(shopInfo.address) + '\n';
+    if (shopInfo.phone) receipt += center('Ph: ' + shopInfo.phone) + '\n';
+    receipt += line() + '\n';
+    receipt += 'Date: ' + totals.date + '  Time: ' + totals.time + '\n';
+    receipt += line() + '\n';
+    receipt += 'Item                 Qty  Rate   Total\n';
+    receipt += line() + '\n';
+    cart.forEach(item => {
+        let name = (item.name + (item.color ? `(${item.color})` : '')).padEnd(20).slice(0, 20);
+        let qty = String(item.quantity).padStart(3);
+        let rate = item.price.toFixed(2).padStart(6);
+        let total = (item.price * item.quantity).toFixed(2).padStart(7);
+        receipt += `${name}${qty} ${rate} ${total}\n`;
+    });
+    receipt += line() + '\n';
+    receipt += `Subtotal:           ${totals.subtotal.toFixed(2).padStart(width-18)}\n`;
+    receipt += `Tax:                ${totals.tax.toFixed(2).padStart(width-18)}\n`;
+    receipt += `Discount:           ${totals.discount.toFixed(2).padStart(width-18)}\n`;
+    receipt += `TOTAL:              ${totals.total.toFixed(2).padStart(width-18)}\n`;
+    receipt += line() + '\n';
+    receipt += center('Thank you!') + '\n\n\n';
+    return receipt;
+}
+
+// Send the formatted receipt to a local Node.js print server
+function sendToThermalPrinter(receiptText) {
+    fetch('http://localhost:3001/print', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ receipt: receiptText })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            showNotification('Sent to thermal printer!', 'success');
+        } else {
+            showNotification('Printer error: ' + (data.error || 'Unknown'), 'error');
+        }
+    })
+    .catch(err => {
+        showNotification('Could not reach print server', 'error');
+    });
+}
+
+// Main handler for the new button
+function printThermalBill() {
+    if (cart.length === 0) {
+        showNotification('Cart is empty!', 'error');
+        return;
+    }
+    const now = new Date();
+    const shopInfo = {
+        name: 'Hello Plast Shop',
+        address: '123 Main Street, City, State - PIN',
+        phone: '+91 98765 43210'
+    };
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const taxRate = cartTaxPercent / 100;
+    const discountRate = cartDiscountPercent / 100;
+    const tax = subtotal * taxRate;
+    const discount = subtotal * discountRate;
+    const total = subtotal + tax - discount;
+    const totals = {
+        date: now.toLocaleDateString('en-IN'),
+        time: now.toLocaleTimeString('en-IN'),
+        subtotal,
+        tax,
+        discount,
+        total
+    };
+    const receiptText = formatThermalReceipt(cart, totals, shopInfo);
+    sendToThermalPrinter(receiptText);
+}
 // Product database - In a real app, this would come from a backend API
 const products = [
     //Packaging
