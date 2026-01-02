@@ -157,20 +157,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateTime();
         displayProducts();
-        // Add No Photo View toggle
+        // Add No Photo View toggle as a small icon button
         const headerRow = document.querySelector('header .flex.items-center.gap-4');
         if (headerRow) {
             let toggle = document.createElement('button');
             toggle.id = 'no-photo-toggle';
-            toggle.className = 'bg-gray-300 text-gray-700 px-4 py-2 rounded touch-button ml-2';
-            toggle.textContent = 'No Photo View';
+            toggle.className = 'icon-btn touch-button ml-2';
+            toggle.title = 'Toggle No Photo View';
+            toggle.innerHTML = '<i class="fas fa-th-list"></i>';
+            toggle.style.width = '40px';
+            toggle.style.height = '40px';
+            toggle.style.fontSize = '1.3rem';
+            toggle.style.display = 'flex';
+            toggle.style.alignItems = 'center';
+            toggle.style.justifyContent = 'center';
             toggle.onclick = function() {
                 isCompactView = !isCompactView;
                 displayProducts(currentCategory);
-                toggle.classList.toggle('bg-blue-500', isCompactView);
-                toggle.classList.toggle('text-white', isCompactView);
-                toggle.classList.toggle('bg-gray-300', !isCompactView);
-                toggle.classList.toggle('text-gray-700', !isCompactView);
+                toggle.classList.toggle('active', isCompactView);
             };
             headerRow.appendChild(toggle);
         }
@@ -392,20 +396,15 @@ function attachSearchHandler() {
 
     input.addEventListener('input', () => {
         const q = input.value.trim().toLowerCase();
-
-        // If empty, just show current category as before
         if (q === "") {
             displayProducts(currentCategory);
             return;
         }
-
-        // Case‑insensitive "contains" search on name and category
         const filtered = products.filter(p => {
             const name = (p.name || "").trim().toLowerCase();
             const category = (p.category || "").trim().toLowerCase();
             return name.includes(q) || category.includes(q);
         });
-
         const productGrid = document.getElementById('product-grid');
         productGrid.innerHTML = "";
         filtered.forEach(product => {
@@ -423,7 +422,7 @@ function attachSearchHandler() {
                     <div class="flex justify-center space-x-2">
                         ${['Mix', ...(product.colors || [])].slice(0, 4).map(color => `
                             <button type="button"
-                                    class="color-circle color-circle-${color.toLowerCase().replace(/\\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
+                                    class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
                                     data-color="${color}"
                                     data-product="${product.id}"
                                     onclick="selectColor('${product.id}', '${color}')"
@@ -475,6 +474,91 @@ function attachSearchHandler() {
             `;
             productGrid.appendChild(div);
         });
+    });
+    // Hide keyboard and search on Enter
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            input.blur();
+            const q = input.value.trim().toLowerCase();
+            if (q === "") {
+                displayProducts(currentCategory);
+                return;
+            }
+            const filtered = products.filter(p => {
+                const name = (p.name || "").trim().toLowerCase();
+                const category = (p.category || "").trim().toLowerCase();
+                return name.includes(q) || category.includes(q);
+            });
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = "";
+            filtered.forEach(product => {
+                const div = document.createElement('div');
+                div.className = "product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow";
+                div.innerHTML = `
+                    <div class="text-center mb-2">
+                        <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
+
+                    <div class="mb-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
+                        <div class="flex justify-center space-x-2">
+                            ${['Mix', ...(product.colors || [])].slice(0, 4).map(color => `
+                                <button type="button"
+                                        class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
+                                        data-color="${color}"
+                                        data-product="${product.id}"
+                                        onclick="selectColor('${product.id}', '${color}')"
+                                        title="${color}">
+                                    ${color === 'Mix' ? '<span class="color-circle-mix-text">M</span>' : ''}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <input type="hidden" id="selected-color-${product.id}" value="Mix">
+                    </div>
+
+                    <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
+                        <div class="flex flex-col items-center w-full">
+                            ${(() => {
+                                const sizes = product.sizes || [];
+                                let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+                                let rows = [];
+                                for (let i = 0; i < sizes.length; i += 4) {
+                                    rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i + 4).map(size => `
+                                        <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}"
+                                                data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
+                                            <span>${size}</span>
+                                            <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
+                                        </button>
+                                    `).join('')}</div>`);
+                                }
+                                return rows.join('');
+                            })()}
+                        </div>
+                        <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
+                        <input type="number"
+                               id="qty-${product.id}"
+                               min="0"
+                               max="10000"
+                               value="0"
+                               class="w-full quantity-input"
+                               placeholder="0">
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors"
+                            onclick="addToCartWithQuantityAndColor(${product.id})">
+                        <i class="fas fa-plus mr-2"></i>Add to Cart
+                    </button>
+                `;
+                productGrid.appendChild(div);
+            });
+        }
     });
 }
 
