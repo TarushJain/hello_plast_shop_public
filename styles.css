@@ -58,8 +58,89 @@ html {
 /* Product card hover effects */
 .product-card {
     transition: all 0.3s ease;
-    cursor: pointer;
+    min-width: 220px;
+    max-width: 260px;
+    font-size: 1rem;
+    padding: 1.2rem;
+    margin: 0.5rem;
 }
+
+.product-row {
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+}
+
+.cart-item {
+    font-size: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+body {
+    font-size: 1.1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #f7f7f7;
+}
+
+header {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+}
+
+.touch-button {
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+}
+
+.quantity-input, .cart-quantity-input {
+    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+    min-width: 2.5rem;
+}
+
+.search-bar {
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0.5rem auto;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    body {
+        font-size: 1rem;
+        max-width: 100vw;
+    }
+    .product-card {
+        min-width: 180px;
+        max-width: 220px;
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+    .product-row {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.5rem;
+    }
+    .cart-item {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+    header {
+        padding: 0.5rem 0.7rem;
+        font-size: 1rem;
+    }
+    .touch-button {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem;
+    }
+    .search-bar {
+        font-size: 1rem;
+        padding: 0.5rem 0.7rem;
+        max-width: 300px;
+    }
+
 
 .product-card:hover {
     transform: translateY(-2px);
@@ -689,5 +770,4 @@ input[type="number"]::-webkit-inner-spin-button {
     .touch-button { min-height: 54px; font-size: 1.05rem; }
     .size-btn { min-width: 52px; }
     .color-circle { width: 32px; height: 32px; }
-    .quantity-input { min-height: 44px; font-size: 16px; }
-}
+    .quantity-input { min-height: 44px; font-size: 16px; }}}
