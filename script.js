@@ -56,38 +56,51 @@ function sendToThermalPrinter(receiptText) {
 // Main handler for the new button
 function printThermalBill() {
     if (cart.length === 0) {
-        showNotification('Cart is empty!', 'error');
+        showNotification("Cart is empty!", "error");
         return;
     }
     const now = new Date();
-    const shopInfo = {
-        name: 'Hello Plast Shop',
-        address: '123 Main Street, City, State - PIN',
-        phone: '+91 98765 43210'
-    };
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const taxRate = cartTaxPercent / 100;
-    const discountRate = cartDiscountPercent / 100;
-    const tax = subtotal * taxRate;
-    const discount = subtotal * discountRate;
+    const tax = cartTaxPercent ? subtotal * cartTaxPercent / 100 : 0;
+    const discount = cartDiscountPercent ? subtotal * cartDiscountPercent / 100 : 0;
     const total = subtotal + tax - discount;
-    const totals = {
-        date: now.toLocaleDateString('en-IN'),
-        time: now.toLocaleTimeString('en-IN'),
-        subtotal,
-        tax,
-        discount,
-        total
+    const bill = {
+        shopName: "Hello Plast Shop",
+        date: now.toLocaleDateString('en-IN') + " " + now.toLocaleTimeString('en-IN'),
+        items: cart.map(item => ({
+            name: item.name,
+            qty: item.quantity,
+            price: item.price
+        })),
+        subtotal: subtotal,
+        tax: tax,
+        discount: discount,
+        total: total
     };
-    const receiptText = formatThermalReceipt(cart, totals, shopInfo);
-    sendToThermalPrinter(receiptText);
+    showNotification("Printing...", "info");
+    fetch("http://127.0.0.1:3001/print", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bill),
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "ok") {
+            showNotification("Printed successfully", "success");
+        } else {
+            showNotification("Printer error: " + (data.error || "Unknown"), "error");
+        }
+    })
+    .catch(err => {
+        showNotification("Could not reach printer service", "error");
+    });
 }
 // Product database - In a real app, this would come from a backend API
 const products = [
     //Packaging
     { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg",colors: ["Brown"], sizes: ["1"], prices: { "1":310 } },
     // Casseroles
-    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 200, "3000": 220, "5000": 280 } },
+    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
     /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
     /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
     /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
@@ -951,4 +964,3 @@ function applyCartTax() {
         updateCart();
     }
 }
-
