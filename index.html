@@ -71,41 +71,120 @@
         .cart-item {
             min-height: 50px;
         }
+        /* Product card styling to match design */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        .product-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: scale-down;
+        }
+        .size-btn {
+            border: 1px solid #000;
+            border-radius: 6px;
+            padding: 4px 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 50px;
+            min-height: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 0.75rem;
+        }
+        .size-btn.selected {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .size-btn span:first-child {
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+        .size-btn span:last-child {
+            font-size: 0.65rem;
+        }
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 100%;
+        }
+        .add-to-cart-btn {
+            background: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            padding: 1px 2px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-width: 70px;
+            max-width: 80px;
+            height: 100%;
+            flex-shrink: 0;
+        }
+        .add-to-cart-btn:hover {
+            background: #2563eb;
+        }
+        .add-to-cart-btn span {
+            display: block;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body class="bg-gray-100 h-screen overflow-hidden">
-    <!-- Header -->
-    <header class="bg-blue-600 text-white p-4 shadow-lg no-print">
-        <div class="flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold">Hello Plast Shop</h1>
-                    <p class="text-sm opacity-90" id="current-time"></p>
+    <!-- Header (redesigned to match screenshot) -->
+    <header class="topbar bg-blue-500 text-white p-3 shadow-lg no-print">
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="search-box flex items-center bg-white rounded-full px-3 py-2 shadow-sm">
+                    <i class="fas fa-search text-gray-600 mr-3" aria-hidden="true"></i>
+                    <input id="search-input" type="text" placeholder="Search products" class="text-sm text-gray-800 bg-transparent outline-none w-64" title="Search by name"/>
                 </div>
-                <div class="hidden md:block">
-                    <input id="search-input" type="text" placeholder="Search products" class="search-bar text-black px-3 py-2 rounded w-64" title="Search by name" autocomplete="off"/>
+
+                <div class="price-toggle flex items-center bg-red-600 rounded-full p-1 shadow-sm" title="Toggle price mode">
+                    <button id="wholesale-btn" class="px-3 text-white font-semibold text-sm">W</button>
+                    <button id="retail-btn" class="ml-1 bg-white text-red-600 rounded-full w-7 h-7 flex items-center justify-center font-semibold text-sm">R</button>
                 </div>
+
+                <button id="list-view-toggle" class="menu-icon text-white text-2xl ml-2 p-2 rounded hover:bg-white/10" aria-label="Toggle list view" title="Toggle list view">
+                    <i class="fas fa-list"></i>
+                </button>
             </div>
+
             <div class="flex-1"></div>
-            <div class="flex items-center gap-2 justify-end">
-                <div class="hidden md:flex items-center gap-2">
-                    <button class="bg-white/10 hover:bg-white/20 px-3 py-2 rounded touch-button text-sm" onclick="Cart()">
-                        <i class="fas fa-shopping-cart mr-2"></i>Cart
-                    </button>
-                    <button class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded touch-button text-sm" onclick="generateBill()">
-                        <i class="fas fa-file-invoice mr-2"></i>Generate Bill
-                    </button>
-                    <span class="ml-2 text-lg font-semibold">₹<span id="cart-total">0.00</span></span>
-                </div>
-                <div class="md:hidden flex items-center gap-2">
-                    <button class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded text-xs" onclick="toggleCart()">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                    <button class="bg-green-500 hover:bg-green-600 px-3 py-1.5 rounded text-xs" onclick="generateBill()">
-                        <i class="fas fa-file-invoice"></i>
-                    </button>
-                    <span class="ml-2 text-sm font-semibold">₹<span id="cart-total-mobile">0.00</span></span>
-                </div>
+
+            <div class="flex items-center gap-3">
+                <button class="cart-square bg-yellow-300 text-black px-3 py-3 rounded shadow-md touch-button" onclick="Cart()" title="Cart">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </button>
+
+                <button class="generate-square bg-green-400 text-white px-3 py-3 rounded shadow-md touch-button" onclick="generateBill()" title="Generate Bill">
+                    <span class="text-sm font-semibold">Generate<br/>Bill</span>
+                </button>
+
+                <div class="ml-3 text-white text-lg font-semibold">₹ <span id="cart-total">0.00</span></div>
             </div>
         </div>
     </header>
