@@ -20,7 +20,6 @@
         -webkit-font-smoothing: antialiased;
         background: #ffffff;
         color: #222;
-        -webkit-user-select: none;
     }
 
     /* Top header like screenshot */
@@ -136,6 +135,7 @@
         padding: 18px;
         box-sizing: border-box;
         min-height: 350px;
+        overflow: hidden; /* ensure inner content cannot escape the rounded card */
         display:flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -175,14 +175,19 @@
     }
 
     /* Size buttons laid out in 3x3 small grid like image */
+    /* Use a wrapping flex layout so size buttons never overflow the card */
     .size-grid {
-        display:grid;
-        grid-template-columns: repeat(3, minmax(0,1fr));
+        display:flex;
+        flex-wrap:wrap;
         gap: 8px;
         margin: 6px 0 10px;
+        align-items: center;
     }
 
-    .size-btn {
+    .size-grid .size-btn {
+        flex: 0 0 calc(33.333% - 6px); /* three per row, accounting for gap */
+        max-width: 100%;
+        box-sizing: border-box;
         font-size: 13px;
         padding: 8px 6px;
         border-radius: 8px;
@@ -193,6 +198,10 @@
         font-weight:600;
         box-shadow: 0 1px 0 rgba(0,0,0,0.08);
         transition: all 0.12s ease;
+        white-space: normal;
+        word-break: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .size-btn.selected {
@@ -285,4 +294,7 @@
     .product-grid { gap: 16px; padding-left: 14px; padding-right: 14px; }
     .product-card .card-inner { min-height: 320px; }
     .product-card img { width: 120px; height: 88px; }
+    /* Fallback: ensure size buttons wrap on narrower screens as well */
+    .size-grid { display:flex; flex-wrap:wrap; gap:8px; }
+    .size-grid .size-btn { flex: 0 0 calc(33.333% - 6px); }
 }
