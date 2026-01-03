@@ -17,7 +17,7 @@ function formatThermalReceipt(cart, totals, shopInfo) {
     receipt += 'Item                 Qty  Rate   Total\n';
     receipt += line() + '\n';
     cart.forEach(item => {
-        let name = (item.name + (item.color ? `(${item.color})` : '')).padEnd(20).slice(0, 20);
+        let name = item.name.padEnd(20).slice(0, 20);
         let qty = String(item.quantity).padStart(3);
         let rate = item.price.toFixed(2).padStart(6);
         let total = (item.price * item.quantity).toFixed(2).padStart(7);
@@ -98,45 +98,45 @@ function printThermalBill() {
 // Product database - In a real app, this would come from a backend API
 const products = [
     //Packaging
-    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg",colors: ["Brown"], sizes: ["1"], prices: { "1":310 } },
+    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg", sizes: ["1"], prices: { "1":310 } },
     // Casseroles
-    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg",colors: ["Cream", "Pink"],  sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
-    /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", colors: ["Pink", "Orange", "Blue"], sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
-    /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
-    /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", colors: ["Red", "Orange"], sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
-    /*done*/{ id: 5, name: "Lotus", category: "casseroles", image: "casseroles/lotus blue.jpg", colors: ["Blue", "Pink"], sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 } },
-    /*done*/{ id: 6, name: "Onyx", category: "casseroles", image: "casseroles/onyx1500.png", colors: ["Red", "Green", "Pink"], sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 72, "1500":110, "1700":132 , "3500": 180, "5000": 243 } },
-    /*done*/{ id: 8, name: "Zigma ", category: "casseroles", image: "casseroles/ZIGMA 2000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 } },
-    /*done*/{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "casseroles/ZIGMA DELUXE 3000 - BLACK.png", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330} },
-    /*done*/{ id: 31, name: "Zigma Handi", category: "casseroles", image: "casseroles/zigma_handi.jpeg", colors: ["Black", "Red"], sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320} },
+    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
+    /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
+    /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
+    /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
+    /*done*/{ id: 5, name: "Lotus", category: "casseroles", image: "casseroles/lotus blue.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 } },
+    /*done*/{ id: 6, name: "Onyx", category: "casseroles", image: "casseroles/onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 72, "1500":110, "1700":132 , "3500": 180, "5000": 243 } },
+    /*done*/{ id: 8, name: "Zigma ", category: "casseroles", image: "casseroles/ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 } },
+    /*done*/{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "casseroles/ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330} },
+    /*done*/{ id: 31, name: "Zigma Handi", category: "casseroles", image: "casseroles/zigma_handi.jpeg", sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320} },
     // Cookers
-    /*done*/{ id: 10, name: "Handi Steel ", category: "cookers", image: "cookers/handi_page.jpg", colors: ["Silver"], sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350} },
-    /*done*/{ id: 11, name: "Steel Cooker ", category: "cookers", image: "cookers/hello_Steel_cooker_plain.jpg", colors: [ "Silver"], sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325} },
-    //{ id: 12, name: "Matki Cooker", category: "cookers", image: "cookers/Matki_cooker.jpg", colors: ["Silver"], sizes: ["1000", "1500", "3000"], prices: { "1000": 399, "1500": 449, "3000": 549 } },
-    /*done*/{ id: 13, name: "Matki Steel", category: "cookers", image: "cookers/matki_steel_5Ltr..png", colors: ["Silver"], sizes: ["2", "3", "5","7"], prices: { "2":480, "3":650, "5":690,"7":730} },
+    /*done*/{ id: 10, name: "Handi Steel ", category: "cookers", image: "cookers/handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350} },
+    /*done*/{ id: 11, name: "Steel Cooker ", category: "cookers", image: "cookers/hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325} },
+    //{ id: 12, name: "Matki Cooker", category: "cookers", image: "cookers/Matki_cooker.jpg", sizes: ["1000", "1500", "3000"], prices: { "1000": 399, "1500": 449, "3000": 549 } },
+    /*done*/{ id: 13, name: "Matki Steel", category: "cookers", image: "cookers/matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":480, "3":650, "5":690,"7":730} },
     
     // Kettles
-    /*done*/{ id: 14, name: "Coral Kettle", category: "kettles", image: "kettles/coral kattle green.jpg", colors: ["Green", "Brown", "Blue"], sizes:["1"], prices: { "1":210 }},
-    /*done*/{ id: 15, name: "Cosmos Kettle", category: "kettles", image: "kettles/Cosmo Kettle_blue.jpg", colors: ["Blue", "Brown"], sizes: ["800", "1200"], prices: { "800": 147, "1200": 157} },
-    /*done*/{ id: 16, name: "Zigma Kettle", category: "kettles", image: "kettles/zigma_kettle.jpg", colors: ["Black", "Red"], sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 } },
+    /*done*/{ id: 14, name: "Coral Kettle", category: "kettles", image: "kettles/coral kattle green.jpg", sizes:["1"], prices: { "1":210 }},
+    /*done*/{ id: 15, name: "Cosmos Kettle", category: "kettles", image: "kettles/Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157} },
+    /*done*/{ id: 16, name: "Zigma Kettle", category: "kettles", image: "kettles/zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 } },
     
     // Tiffins
-    /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "tiffins/Apple steel-pp.jpg", colors: ["Green", "Red", "Blue"], sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 } },
-    /*done*/{ id: 18, name: "Loto", category: "tiffins", image: "tiffins/jolly_tiffin.jpeg", colors: ["Pink", "Red", "Blue"], sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 } },
-    /*done*/{ id: 19, name: "Bonton", category: "tiffins", image: "tiffins/BONTON_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 85 } },
-    /*done*/ { id: 20, name: "Cammy 3 ", category: "tiffins", image: "tiffins/cammy_3_BROWN.jpg", colors: ["Brown", "Green", "Blue"], sizes: ["3", "4"], prices: { "3":248, "4": 315 } },
-    /*done*/{ id: 21, name: "Cherish", category: "tiffins", image: "tiffins/Cherish Tifin blue.jpg", colors: ["Blue", "Brown", "Green"], sizes: ["3", "4"], prices: { "3":475, "4":555} },
-    /*done*/ { id: 22, name: "Coral 3", category: "tiffins", image: "tiffins/Corel 3 RED.jpg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220} },
-    /*done*/{ id: 23, name: "Happytime", category: "tiffins", image: "tiffins/HAPPYTIME_TIFFEN.jpeg", colors: [], sizes: ["1"], prices: { "1": 65 } },
-    /*done*/{ id: 24, name: "Leo ", category: "tiffins", image: "tiffins/LEO_2_ORANGE.jpg", colors: ["Orange", "Red", "Blue"], sizes: ["2", "3"], prices: { "2": 165, "3": 205} },
-    /*done*/ { id: 25, name: "Loto SS", category: "tiffins", image: "tiffins/LOTO DELUXE_blue.jpg", colors: ["Blue", "Red", "Black"], sizes: ["3", "4"], prices: { "3":222, "4": 242} },
-    /*done*/ { id: 26, name: "Loto", category: "tiffins", image: "tiffins/loto red.jpg", colors: ["Red", "Blue","Green"], sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 } },
-    /*done*/{ id: 27, name: "Reo ", category: "tiffins", image: "tiffins/REO_3_TIFFEN.jpeg", colors: ["Red", "Orange", "Blue"], sizes: ["2", "3"], prices: { "2": 118, "3": 143} },
-    /*done*/ { id: 28, name: "Zigma ", category: "tiffins", image: "tiffins/zigma_tiffen_ black.jpg", colors: ["Black", "Red" ], sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 } },
-    /*done*/{ id: 31, name: "Flora", category: "tiffins", image: "tiffins/flora_tiffin.jpeg", colors: ["Pink", "Red", "Blue"], sizes: ["Steel"], prices: {"Steel":263 } },
+    /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "tiffins/Apple steel-pp.jpg", sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 } },
+    /*done*/{ id: 18, name: "Loto", category: "tiffins", image: "tiffins/jolly_tiffin.jpeg", sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 } },
+    /*done*/{ id: 19, name: "Bonton", category: "tiffins", image: "tiffins/BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 } },
+    /*done*/ { id: 20, name: "Cammy 3 ", category: "tiffins", image: "tiffins/cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 } },
+    /*done*/{ id: 21, name: "Cherish", category: "tiffins", image: "tiffins/Cherish Tifin blue.jpg", sizes: ["3", "4"], prices: { "3":475, "4":555} },
+    /*done*/ { id: 22, name: "Coral 3", category: "tiffins", image: "tiffins/Corel 3 RED.jpg", sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220} },
+    /*done*/{ id: 23, name: "Happytime", category: "tiffins", image: "tiffins/HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 } },
+    /*done*/{ id: 24, name: "Leo ", category: "tiffins", image: "tiffins/LEO_2_ORANGE.jpg", sizes: ["2", "3"], prices: { "2": 165, "3": 205} },
+    /*done*/ { id: 25, name: "Loto SS", category: "tiffins", image: "tiffins/LOTO DELUXE_blue.jpg", sizes: ["3", "4"], prices: { "3":222, "4": 242} },
+    /*done*/ { id: 26, name: "Loto", category: "tiffins", image: "tiffins/loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 } },
+    /*done*/{ id: 27, name: "Reo ", category: "tiffins", image: "tiffins/REO_3_TIFFEN.jpeg", sizes: ["2", "3"], prices: { "2": 118, "3": 143} },
+    /*done*/ { id: 28, name: "Zigma ", category: "tiffins", image: "tiffins/zigma_tiffen_ black.jpg", sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 } },
+    /*done*/{ id: 31, name: "Flora", category: "tiffins", image: "tiffins/flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 } },
     // Water Jugs
-    /*done*/{ id: 29, name: "Croma Jug", category: "water jug", image: "water jug/CROMA_JUG_24_RED.jpg", colors: ["Red", "Blue", "Orange"], sizes: ["6", "24"], prices: { "6": 230, "24": 485} },
-    /*done*/{ id: 30, name: "Zigma Jug", category: "water jug", image: "water jug/zigma jug 18 black.jpg", colors: ["Black", "Red"], sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890} }
+    /*done*/{ id: 29, name: "Croma Jug", category: "water jug", image: "water jug/CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485} },
+    /*done*/{ id: 30, name: "Zigma Jug", category: "water jug", image: "water jug/zigma jug 18 black.jpg", sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890} }
 ];
 
 // Global variables
@@ -144,51 +144,72 @@ let cart = [];
 let isCompactView = false; // Track 'No Photo View' state
 let currentCategory = 'all';
 let cartTaxPercent = 0; // Tax percent for cart popup
-// Add this global variable for discount percent
 let cartDiscountPercent = 0; // Discount percent for cart popup
+// Price mode: 'W' = Wholesale, 'R' = Retail
+let priceMode = 'W';
+let isSearchActive = false; // Track if search is currently active
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
-    // Remove buttons and numerical bar to the left of the cart button
-    const numericalBar = document.querySelector('.main-screen .number-box');
-    const leftButtons = document.querySelectorAll('.main-screen .left-buttons');
-    if (numericalBar) numericalBar.remove();
-    leftButtons.forEach(button => button.remove());
+    // Always show all products on load
+    displayProducts('all');
 
-    updateTime();
-        displayProducts();
-        // Add No Photo View toggle as a small icon button
-        const headerRow = document.querySelector('header .flex.items-center.gap-4');
-        if (headerRow) {
-            let toggle = document.createElement('button');
-            toggle.id = 'no-photo-toggle';
-            toggle.className = 'icon-btn touch-button ml-2';
-            toggle.title = 'Toggle No Photo View';
-            toggle.innerHTML = '<i class="fas fa-th-list"></i>';
-            toggle.style.width = '40px';
-            toggle.style.height = '40px';
-            toggle.style.fontSize = '1.3rem';
-            toggle.style.display = 'flex';
-            toggle.style.alignItems = 'center';
-            toggle.style.justifyContent = 'center';
-            toggle.onclick = function() {
-                isCompactView = !isCompactView;
-                displayProducts(currentCategory);
-                toggle.classList.toggle('active', isCompactView);
-            };
-            headerRow.appendChild(toggle);
+    // Fix W/R toggle for new header
+    const wBtn = document.getElementById('wholesale-btn');
+    const rBtn = document.getElementById('retail-btn');
+    function updatePriceToggleUI() {
+        if (priceMode === 'W') {
+            wBtn.classList.add('active');
+            rBtn.classList.remove('active');
+        } else {
+            wBtn.classList.remove('active');
+            rBtn.classList.add('active');
         }
+    }
+    if (wBtn && rBtn) {
+        wBtn.onclick = function() {
+            if (priceMode !== 'W') {
+                priceMode = 'W';
+                updatePriceToggleUI();
+                displayProducts(currentCategory);
+                updateCart();
+            }
+        };
+        rBtn.onclick = function() {
+            if (priceMode !== 'R') {
+                priceMode = 'R';
+                updatePriceToggleUI();
+                displayProducts(currentCategory);
+                updateCart();
+            }
+        };
+        updatePriceToggleUI();
+    }
+
+    // ...existing code...
+    updateTime();
+    // Add list view toggle functionality to the list button
+    const listViewToggle = document.getElementById('list-view-toggle');
+    if (listViewToggle) {
+        listViewToggle.onclick = function() {
+            isCompactView = !isCompactView;
+            displayProducts(currentCategory);
+            // Visual feedback: change button appearance when list view is active
+            if (isCompactView) {
+                this.classList.add('bg-white', 'text-blue-500');
+                this.classList.remove('text-white');
+            } else {
+                this.classList.remove('bg-white', 'text-blue-500');
+                this.classList.add('text-white');
+            }
+        };
+    }
     setInterval(updateTime, 1000);
-    
-    // Add keyboard shortcuts for quantity input
     setupKeyboardShortcuts();
-    // Initialize cart hidden by default (can be toggled)
     const cartPanel = document.getElementById('cart-panel');
     if (cartPanel) cartPanel.classList.add('hidden');
-    // Tax functions removed
-    // Hook up search
     attachSearchHandler();
-
+    // ...existing code...
     // Attach handler for cart tax input
     const cartTaxInput = document.getElementById('cart-tax-input');
     if (cartTaxInput) {
@@ -205,10 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCart();
         });
     }
-
-    // Prevent pinch-zoom and double-tap zoom on iOS/large tablets
     preventZoomOnTouchDevices();
-    // Ensure header height CSS variable is set
     updateHeaderHeightCSSVar();
     window.addEventListener('resize', updateHeaderHeightCSSVar);
     window.addEventListener('orientationchange', updateHeaderHeightCSSVar);
@@ -270,10 +288,13 @@ function updateHeaderHeightCSSVar() {
 
 // Update current time
 function updateTime() {
+    const timeElement = document.getElementById('current-time');
+    if (!timeElement) return; // Element doesn't exist, skip update
+    
     const now = new Date();
     const timeString = now.toLocaleTimeString('en-IN');
     const dateString = now.toLocaleDateString('en-IN');
-    document.getElementById('current-time').textContent = `${dateString} ${timeString}`;
+    timeElement.textContent = `${dateString} ${timeString}`;
 }
 
 // Display products based on category filter
@@ -282,16 +303,20 @@ function displayProducts(category = 'all') {
     const productGrid = document.getElementById('product-grid');
     const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
     
+    // Helper to get price based on mode
+    function getDisplayPrice(product, size) {
+        let base = product.prices[size] || 0;
+        if (priceMode === 'R') return base + 10;
+        return base;
+    }
+
     if (isCompactView) {
         // Dense, text-only mode
         productGrid.innerHTML = filteredProducts.map(product => {
             let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-1 flex items-center'>`;
             html += `<span class='font-semibold text-sm flex-1'>${product.name.trim()}</span>`;
-            html += `<span class='flex gap-1 ml-2'>` + ['Mix', ...(product.colors||[])].slice(0,4).map(color => `
-                <button type='button' class='color-circle color-circle-${color.toLowerCase().replace(/\s+/g,'-')}' data-color='${color}' data-product='${product.id}' onclick="selectColor('${product.id}','${color}')" title='${color}' style='width:18px;height:18px;border-radius:50%;border:1px solid #ccc;'></button>
-            `).join('') + `</span>`;
             html += `<span class='flex gap-1 ml-2'>` + (product.sizes||[]).map(size => `
-                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${product.prices[size]}</span>
+                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${getDisplayPrice(product, size)}</span>
             `).join('') + `</span>`;
             html += `<input type='number' id='qty-${product.id}' min='1' max='10000' value='1' class='ml-2 w-16 quantity-input text-xs px-1 py-0.5' placeholder='1'>`;
             html += `<button class='ml-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
@@ -300,72 +325,56 @@ function displayProducts(category = 'all') {
         }).join('');
         productGrid.style.display = 'block';
     } else {
-        productGrid.innerHTML = filteredProducts.map(product => `
-            <div class="product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
-                <div class="text-center mb-2">
-                    <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
+        productGrid.innerHTML = filteredProducts.map(product => {
+            const sizes = product.sizes || [];
+            const defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+            return `
+            <div class="product-card bg-white rounded-lg shadow-md p-3">
+                <!-- Product Photo -->
+                <div class="product-photo">
+                    <img src="${product.image}" alt="${product.name}" 
                          onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
                 </div>
-                <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
-                <!-- Price removed from product card -->
-                <!-- Color selection -->
+                
+                <!-- Product Name -->
+                <h3 class="font-semibold text-base mb-0 text-center">${product.name}</h3>
+                
+                <!-- Size Selection -->
                 <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
-                    <div class="flex justify-center space-x-2">
-                        ${['Mix', ...product.colors].slice(0, 4).map(color => `
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                    <div class="size-grid">
+                        ${sizes.map(size => `
                             <button type="button" 
-                                    class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color==='Mix' ? ' selected' : ''}" 
-                                    data-color="${color}" 
-                                    data-product="${product.id}"
-                                    onclick="selectColor('${product.id}', '${color}')"
-                                    title="${color}">
-                                ${color==='Mix' ? '<span class=\"color-circle-mix-text\">M</span>' : ''}
+                                    class="size-btn${(size === defaultSize) ? ' selected' : ''}" 
+                                    data-size="${size}" 
+                                    data-product="${product.id}" 
+                                    onclick="selectSize('${product.id}', '${size}')">
+                                <span>${size}</span>
+                                <span>₹${getDisplayPrice(product, size)}</span>
                             </button>
                         `).join('')}
                     </div>
-                    <input type="hidden" id="selected-color-${product.id}" value="Mix">
+                    <input type="hidden" id="selected-size-${product.id}" value="${defaultSize}">
                 </div>
                 
-                <!-- Size selection -->
-                <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
-                    <div class="flex flex-col items-center w-full">
-                        ${(() => {
-                            const sizes = product.sizes || [];
-                            let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
-                            let rows = [];
-                            for (let i = 0; i < sizes.length; i += 4) {
-                                rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i+4).map(size => `
-                                    <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}" data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
-                                        <span>${size}</span>
-                                        <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
-                                    </button>
-                                `).join('')}</div>`);
-                            }
-                            return rows.join('');
-                        })()}
-                    </div>
-                    <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
-                </div>
-                
-                <!-- Quick quantity input -->
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
+                <!-- Quantity and Add to Cart -->
+                <div class="flex items-center gap-2">
                     <input type="number" 
                            id="qty-${product.id}"
                            min="0" 
                            max="10000" 
                            value="0"
-                           class="w-full quantity-input"
+                           class="flex-1 quantity-input border border-gray-300 rounded px-2 py-1.5"
                            placeholder="0">
+                    <button class="add-to-cart-btn touch-button" 
+                            onclick="addToCartWithQuantityAndColor(${product.id})">
+                        <span>Add to</span>
+                        <span>Cart</span>
+                    </button>
                 </div>
-                
-                <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors" 
-                        onclick="addToCartWithQuantityAndColor(${product.id})">
-                    <i class="fas fa-plus mr-2"></i>Add to Cart
-                </button>
             </div>
-        `).join('');
+        `;
+        }).join('');
         productGrid.style.display = '';
     }
     // Update category button styles
@@ -386,180 +395,150 @@ function updateCategoryButtons(selectedCategory) {
 
 // Filter products by category
 function filterCategory(category) {
+    // Clear search when category is selected
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = '';
+        isSearchActive = false;
+    }
     displayProducts(category);
 }
 
-// Search products by name/category (fixed logic)
+// Progressive "Starts With" Real-Time Search for POS
+// Filters products on every keystroke using prefix-based matching
+// Progressive "Starts With" Real-Time Search (NAME ONLY)
 function attachSearchHandler() {
     const input = document.getElementById('search-input');
-    if (!input) return;
+    if (!input) {
+        console.error('Search input element not found!');
+        return;
+    }
 
-    input.addEventListener('input', () => {
-        const q = input.value.trim().toLowerCase();
-        if (q === "") {
-            displayProducts(currentCategory);
+    // Attach the input event listener for real-time search
+    input.addEventListener('input', function (e) {
+        const rawValue = this.value || '';
+        const query = rawValue.trim().toLowerCase();
+
+        // If input is empty → restore normal category view
+        if (!query) {
+            isSearchActive = false;
+            displayProducts(currentCategory || 'all');
             return;
         }
-        const filtered = products.filter(p => {
-            const name = (p.name || "").trim().toLowerCase();
-            const category = (p.category || "").trim().toLowerCase();
-            return name.includes(q) || category.includes(q);
-        });
-        const productGrid = document.getElementById('product-grid');
-        productGrid.innerHTML = "";
-        filtered.forEach(product => {
-            const div = document.createElement('div');
-            div.className = "product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow";
-            div.innerHTML = `
-                <div class="text-center mb-2">
-                    <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
-                </div>
-                <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
 
+        // Mark search as active
+        isSearchActive = true;
+
+        // Prefix-based progressive filtering (NAME ONLY)
+        // Match products where name starts with the query (case-insensitive)
+        const filteredProducts = products.filter(product => {
+            // Safety check
+            if (!product) return false;
+            
+            // Get product name and normalize it
+            const name = product.name;
+            if (!name) return false;
+            
+            // Convert to string, trim whitespace, convert to lowercase
+            const productName = String(name).trim().toLowerCase();
+            
+            // Check if product name starts with query (prefix match)
+            return productName.startsWith(query);
+        });
+
+        // Render filtered products immediately
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) {
+            console.error('Product grid element not found!');
+            return;
+        }
+
+        if (filteredProducts.length === 0) {
+            // Show empty state if no results
+            productGrid.innerHTML = '<p class="text-gray-500 text-center py-8">No products found</p>';
+        } else {
+            // Use the existing filtered display function
+            displayProductsFiltered(filteredProducts);
+        }
+    });
+}
+
+// Helper: show only filtered products using main display logic
+function displayProductsFiltered(filteredProducts) {
+    const productGrid = document.getElementById('product-grid');
+    // Helper to get price based on mode
+    function getDisplayPrice(product, size) {
+        let base = product.prices[size] || 0;
+        if (priceMode === 'R') return base + 10;
+        return base;
+    }
+    if (isCompactView) {
+        productGrid.innerHTML = filteredProducts.map(product => {
+            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-1 flex items-center'>`;
+            html += `<span class='font-semibold text-sm flex-1'>${product.name.trim()}</span>`;
+            html += `<span class='flex gap-1 ml-2'>` + (product.sizes||[]).map(size => `
+                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${getDisplayPrice(product, size)}</span>
+            `).join('') + `</span>`;
+            html += `<input type='number' id='qty-${product.id}' min='1' max='10000' value='1' class='ml-2 w-16 quantity-input text-xs px-1 py-0.5' placeholder='1'>`;
+            html += `<button class='ml-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            html += `</div>`;
+            return html;
+        }).join('');
+        productGrid.style.display = 'block';
+    } else {
+        productGrid.innerHTML = filteredProducts.map(product => {
+            const sizes = product.sizes || [];
+            const defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+            
+            return `
+            <div class="product-card bg-white rounded-lg shadow-md p-3">
+                <!-- Product Photo -->
+                <div class="product-photo">
+                    <img src="${product.image}" alt="${product.name}" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NCM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
+                </div>
+                
+                <!-- Product Name -->
+                <h3 class="font-semibold text-base mb-0 text-center">${product.name}</h3>
+                
+                <!-- Size Selection -->
                 <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
-                    <div class="flex justify-center space-x-2">
-                        ${['Mix', ...(product.colors || [])].slice(0, 4).map(color => `
-                            <button type="button"
-                                    class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
-                                    data-color="${color}"
-                                    data-product="${product.id}"
-                                    onclick="selectColor('${product.id}', '${color}')"
-                                    title="${color}">
-                                ${color === 'Mix' ? '<span class="color-circle-mix-text">M</span>' : ''}
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                    <div class="size-grid">
+                        ${sizes.map(size => `
+                            <button type="button" 
+                                    class="size-btn${(size === defaultSize) ? ' selected' : ''}" 
+                                    data-size="${size}" 
+                                    data-product="${product.id}" 
+                                    onclick="selectSize('${product.id}', '${size}')">
+                                <span>${size}</span>
+                                <span>₹${getDisplayPrice(product, size)}</span>
                             </button>
                         `).join('')}
                     </div>
-                    <input type="hidden" id="selected-color-${product.id}" value="Mix">
+                    <input type="hidden" id="selected-size-${product.id}" value="${defaultSize}">
                 </div>
-
-                <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
-                    <div class="flex flex-col items-center w-full">
-                        ${(() => {
-                            const sizes = product.sizes || [];
-                            let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
-                            let rows = [];
-                            for (let i = 0; i < sizes.length; i += 4) {
-                                rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i + 4).map(size => `
-                                    <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}"
-                                            data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
-                                        <span>${size}</span>
-                                        <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
-                                    </button>
-                                `).join('')}</div>`);
-                            }
-                            return rows.join('');
-                        })()}
-                    </div>
-                    <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
-                </div>
-
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-                    <input type="number"
+                
+                <!-- Quantity and Add to Cart -->
+                <div class="flex items-center gap-2">
+                    <input type="number" 
                            id="qty-${product.id}"
-                           min="0"
-                           max="10000"
+                           min="0" 
+                           max="10000" 
                            value="0"
-                           class="w-full quantity-input"
+                           class="flex-1 quantity-input border border-gray-300 rounded px-2 py-1.5"
                            placeholder="0">
-                </div>
-
-                <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors"
-                        onclick="addToCartWithQuantityAndColor(${product.id})">
-                    <i class="fas fa-plus mr-2"></i>Add to Cart
-                </button>
-            `;
-            productGrid.appendChild(div);
-        });
-    });
-    // Hide keyboard and search on Enter
-    input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            input.blur();
-            const q = input.value.trim().toLowerCase();
-            if (q === "") {
-                displayProducts(currentCategory);
-                return;
-            }
-            const filtered = products.filter(p => {
-                const name = (p.name || "").trim().toLowerCase();
-                const category = (p.category || "").trim().toLowerCase();
-                return name.includes(q) || category.includes(q);
-            });
-            const productGrid = document.getElementById('product-grid');
-            productGrid.innerHTML = "";
-            filtered.forEach(product => {
-                const div = document.createElement('div');
-                div.className = "product-card bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow";
-                div.innerHTML = `
-                    <div class="text-center mb-2">
-                        <img src="${product.image}" alt="${product.name}" class="mx-auto rounded mb-1 bg-gray-50" 
-                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00OCA2NEM1Ni44MzY2IDY0IDY0IDU2LjgzNjYgNjQgNDhDNjQgMzkuMTYzNCA1Ni44MzY2IDMyIDQ4IDMyQzM5LjE2MzQgMzIgMzIgMzkuMTYzNCAzMiA0OEMzMiA1Ni44MzY2IDM5LjE2MzQgNjQgNDggNjRaIiBmaWxsPSIjOUI5QkEwIi8+Cjwvc3ZnPgo='">
-                    </div>
-                    <h3 class="font-semibold text-lg mb-1 text-center">${product.name}</h3>
-
-                    <div class="mb-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Color:</label>
-                        <div class="flex justify-center space-x-2">
-                            ${['Mix', ...(product.colors || [])].slice(0, 4).map(color => `
-                                <button type="button"
-                                        class="color-circle color-circle-${color.toLowerCase().replace(/\s+/g, '-')}${color === 'Mix' ? ' selected' : ''}"
-                                        data-color="${color}"
-                                        data-product="${product.id}"
-                                        onclick="selectColor('${product.id}', '${color}')"
-                                        title="${color}">
-                                    ${color === 'Mix' ? '<span class="color-circle-mix-text">M</span>' : ''}
-                                </button>
-                            `).join('')}
-                        </div>
-                        <input type="hidden" id="selected-color-${product.id}" value="Mix">
-                    </div>
-
-                    <div class="mb-2" style="min-height:70px;display:flex;flex-direction:column;justify-content:flex-start;">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Size:</label>
-                        <div class="flex flex-col items-center w-full">
-                            ${(() => {
-                                const sizes = product.sizes || [];
-                                let defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
-                                let rows = [];
-                                for (let i = 0; i < sizes.length; i += 4) {
-                                    rows.push(`<div class='flex justify-center space-x-2 mb-1'>${sizes.slice(i, i + 4).map(size => `
-                                        <button type="button" class="size-btn flex flex-col items-center justify-center${(size === defaultSize) ? ' selected' : ''}"
-                                                data-size="${size}" data-product="${product.id}" onclick="selectSize('${product.id}', '${size}')">
-                                            <span>${size}</span>
-                                            <span class="text-xs text-gray-700">₹${product.prices && product.prices[size] !== undefined ? product.prices[size] : '-'}</span>
-                                        </button>
-                                    `).join('')}</div>`);
-                                }
-                                return rows.join('');
-                            })()}
-                        </div>
-                        <input type="hidden" id="selected-size-${product.id}" value="${(product.sizes && product.sizes.length === 1) ? product.sizes[0] : ((product.sizes && product.sizes.includes('1500')) ? '1500' : (product.sizes ? product.sizes[0] : ''))}">
-                    </div>
-
-                    <div class="mb-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-                        <input type="number"
-                               id="qty-${product.id}"
-                               min="0"
-                               max="10000"
-                               value="0"
-                               class="w-full quantity-input"
-                               placeholder="0">
-                    </div>
-
-                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold touch-button hover:bg-blue-700 transition-colors"
+                    <button class="add-to-cart-btn touch-button" 
                             onclick="addToCartWithQuantityAndColor(${product.id})">
-                        <i class="fas fa-plus mr-2"></i>Add to Cart
+                        <span>Add to</span>
+                        <span>Cart</span>
                     </button>
-                `;
-                productGrid.appendChild(div);
-            });
-        }
-    });
+                </div>
+            </div>
+        `;
+        }).join('');
+        productGrid.style.display = '';
+    }
 }
 
 // Add product to cart with quantity input (legacy function - kept for compatibility)
@@ -633,25 +612,6 @@ function addToCartWithQuantity(productId) {
     updateCart();
 }
 
-// Select color for a product
-function selectColor(productId, color) {
-    // Remove selected class from all color buttons for this product
-    const colorButtons = document.querySelectorAll(`[data-product="${productId}"][data-color]`);
-    colorButtons.forEach(btn => btn.classList.remove('selected'));
-    
-    // Add selected class to clicked button
-    const clickedButton = document.querySelector(`[data-product="${productId}"][data-color="${color}"]`);
-    if (clickedButton) {
-        clickedButton.classList.add('selected');
-    }
-    
-    // Update hidden input
-    document.getElementById(`selected-color-${productId}`).value = color;
-    
-    // Show visual feedback
-    showNotification(`Color selected: ${color}`);
-}
-
 // Select size for a product
 function selectSize(productId, size) {
     // Remove selected class from all size buttons for this product
@@ -667,17 +627,21 @@ function selectSize(productId, size) {
     // Update hidden input
     document.getElementById(`selected-size-${productId}`).value = size;
     
+    // Focus the quantity input for this product
+    const qtyInput = document.getElementById(`qty-${productId}`);
+    if (qtyInput) {
+        qtyInput.focus();
+        qtyInput.select && qtyInput.select();
+    }
     // Show visual feedback
     showNotification(`Size selected: ${size}`);
 }
 
-// Add product to cart with quantity and color selection
+// Add product to cart with quantity and size selection
 function addToCartWithQuantityAndColor(productId) {
     const product = products.find(p => p.id === productId);
     const quantityInput = document.getElementById(`qty-${productId}`);
-    const selectedColorInput = document.getElementById(`selected-color-${productId}`);
     const quantity = parseInt(quantityInput.value);
-    const selectedColor = selectedColorInput.value;
 
     if (isNaN(quantity) || quantity <= 0) {
         showNotification('Please enter a valid quantity!', 'error');
@@ -689,16 +653,6 @@ function addToCartWithQuantityAndColor(productId) {
         showNotification('Maximum quantity is 10,000!', 'error');
         quantityInput.value = 10000;
         quantityInput.focus();
-        return;
-    }
-
-    if (!selectedColor) {
-        showNotification('Please select a color!', 'error');
-        const colorButtons = document.querySelectorAll(`[data-product="${productId}"][data-color]`);
-        colorButtons.forEach(btn => btn.classList.add('error-highlight'));
-        setTimeout(() => {
-            colorButtons.forEach(btn => btn.classList.remove('error-highlight'));
-        }, 2000);
         return;
     }
 
@@ -715,9 +669,11 @@ function addToCartWithQuantityAndColor(productId) {
         return;
     }
 
+    // Use price based on mode
     let price = 0;
     if (product.prices && product.prices[selectedSize] !== undefined && !isNaN(product.prices[selectedSize])) {
         price = parseFloat(product.prices[selectedSize]);
+        if (priceMode === 'R') price += 10;
         if (isNaN(price) || price <= 0) {
             showNotification('Invalid price for selected size!', 'error');
             return;
@@ -727,13 +683,13 @@ function addToCartWithQuantityAndColor(productId) {
         return;
     }
 
-    const cartItemId = `${productId}-${selectedColor}-${selectedSize}`;
+    const cartItemId = `${productId}-${selectedSize}`;
     const existingItem = cart.find(item => item.cartItemId === cartItemId);
 
     if (existingItem) {
         existingItem.quantity = quantity;
         existingItem.price = price;
-        showNotification(`${product.name} (${selectedColor}, ${selectedSize}) quantity updated to ${quantity}!`);
+        showNotification(`${product.name} (${selectedSize}) quantity updated to ${quantity}!`);
     } else {
         cart.push({
             id: product.id,
@@ -741,21 +697,14 @@ function addToCartWithQuantityAndColor(productId) {
             name: product.name,
             price: price,
             quantity: quantity,
-            color: selectedColor,
             size: selectedSize
         });
-        showNotification(`${product.name} (${selectedColor}, ${selectedSize}) added to cart! (Quantity: ${quantity})`);
+        showNotification(`${product.name} (${selectedSize}) added to cart! (Quantity: ${quantity})`);
     }
 
     // After adding/updating cart item, reset quantity input to 0 (not 1)
     quantityInput.value = 0;
-    selectedColorInput.value = 'Mix';
     selectedSizeInput.value = '1500';
-
-    const colorButtons = document.querySelectorAll(`[data-product="${productId}"][data-color]`);
-    colorButtons.forEach(btn => btn.classList.remove('selected'));
-    const mixBtn = document.querySelector(`[data-product="${productId}"][data-color="Mix"]`);
-    if (mixBtn) mixBtn.classList.add('selected');
 
     const sizeButtons = document.querySelectorAll(`[data-product="${productId}"][data-size]`);
     sizeButtons.forEach(btn => btn.classList.remove('selected'));
@@ -826,7 +775,7 @@ function updateCart() {
         <div class="cart-item bg-gray-50 rounded-lg p-3 border">
             <div class="flex justify-between items-center mb-2">
                 <div>
-                    <h4 class="font-semibold text-sm">${(item.name||'').trim()}${item.color ? '(' + item.color + ')' : ''}</h4>
+                    <h4 class="font-semibold text-sm">${(item.name||'').trim()}</h4>
                     ${item.size ? `<p class="text-xs text-gray-600">Size: <span class="font-medium">${item.size}</span></p>` : ''}
                 </div>
                 <button class="text-red-500 hover:text-red-700" onclick="removeFromCart('${item.cartItemId || item.id}')">
@@ -855,6 +804,15 @@ function updateCart() {
             </div>
         </div>
     `).join('');
+
+    // If price mode changed, update all cart item prices
+    cart.forEach(item => {
+        const product = products.find(p => p.id === item.id);
+        if (product && product.prices && item.size && product.prices[item.size] !== undefined) {
+            let base = parseFloat(product.prices[item.size]);
+            item.price = (priceMode === 'R') ? base + 10 : base;
+        }
+    });
 
     const subtotal = cart.reduce((sum, item) => {
         const itemTotal = item.price * item.quantity;
@@ -913,14 +871,13 @@ function generateBill() {
         // Build table rows for each item
         billItems.innerHTML = cart.map(item => {
             const name = (item.name|| '').trim();
-            const nameWithColor = name + (item.color ? '(' + item.color + ')' : '');
             const size = item.size || '';
             const qty = Number(item.quantity) || 0;
             const price = Number(item.price) || 0;
             const lineTotal = qty * price;
             return `
                 <tr>
-                    <td style="padding:8px">${nameWithColor}</td>
+                    <td style="padding:8px">${name}</td>
                     <td style="text-align:center;padding:8px">${size}</td>
                     <td style="text-align:center;padding:8px">${qty}</td>
                     <td style="text-align:center;padding:8px">₹${price.toFixed(2)}</td>
