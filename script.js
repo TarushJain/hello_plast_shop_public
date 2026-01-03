@@ -259,20 +259,27 @@ function preventZoomOnTouchDevices() {
 // Setup keyboard shortcuts for better UX
 function setupKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
-        // Enter key to add to cart (when quantity input is focused)
-        if (e.key === 'Enter' && document.activeElement.type === 'number') {
-            const productId = document.activeElement.id.replace('qty-', '');
-            addToCartWithQuantity(parseInt(productId));
+        // Enter key to add to cart (ONLY when quantity input is focused)
+        if (e.key === 'Enter' && document.activeElement.type === 'number' && document.activeElement.id.startsWith('qty-')) {
+            e.preventDefault(); // Prevent form submission or other default behavior
+            const productId = parseInt(document.activeElement.id.replace('qty-', ''));
+            if (!isNaN(productId)) {
+                addToCartWithQuantityAndColor(productId);
+            }
+            return; // Don't process further for quantity inputs
         }
         
+        // For all other inputs (tax, discount, etc.), let Enter work normally
+        // This allows natural form navigation (move to next field, submit, etc.)
+        
         // Escape key to clear quantity input
-        if (e.key === 'Escape' && document.activeElement.type === 'number') {
-            document.activeElement.value = 1;
+        if (e.key === 'Escape' && document.activeElement.type === 'number' && document.activeElement.id.startsWith('qty-')) {
+            document.activeElement.value = 0;
             document.activeElement.blur();
         }
         
-        // "c" to toggle cart quickly
-        if (e.key.toLowerCase() === 'c') {
+        // "c" to toggle cart quickly (only when not typing in an input)
+        if (e.key.toLowerCase() === 'c' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
             toggleCart();
         }
     });
