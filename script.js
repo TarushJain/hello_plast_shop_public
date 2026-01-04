@@ -121,7 +121,7 @@ const products = [
     /*done*/{ id: 16, name: "Zigma Kettle", category: "kettles", image: "kettles/zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 } },
     
     // Tiffins
-    /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "tiffins/Apple steel-pp.jpg", sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 } },
+    /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "https://drive.google.com/file/d/1qeiVCF_fV6e0DYGZxXSpuNfoe-vLPJ3C/view?usp=drive_link", sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 } },
     /*done*/{ id: 18, name: "Loto", category: "tiffins", image: "tiffins/jolly_tiffin.jpeg", sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 } },
     /*done*/{ id: 19, name: "Bonton", category: "tiffins", image: "tiffins/BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 } },
     /*done*/ { id: 20, name: "Cammy 3 ", category: "tiffins", image: "tiffins/cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 } },
@@ -1124,3 +1124,4 @@ function applyCartTax() {
         updateCart();
     }
 }
+
