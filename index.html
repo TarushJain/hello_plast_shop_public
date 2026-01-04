@@ -48,12 +48,16 @@
             left: 0;
             right: 0;
             z-index: 50;
+            width: 100%;
         }
         /* main uses CSS variable for header height so content is not hidden under fixed header */
         main {
-            padding-top: var(--header-height, 64px);
-            height: calc(100vh - var(--header-height, 64px)); /* keep header visible and main fit to viewport */
+            padding-top: var(--header-height, 80px) !important;
+            margin-top: 0 !important;
+            height: calc(100vh - var(--header-height, 80px)) !important;
+            min-height: calc(100vh - var(--header-height, 80px));
             overflow: hidden;
+            box-sizing: border-box;
         }
         section.flex-1 { /* product/catalog area should scroll internally */
             height: 100%;
@@ -160,7 +164,7 @@
             <div class="flex items-center gap-3">
                 <div class="search-box flex items-center bg-white rounded-full px-3 py-2 shadow-sm">
                     <i class="fas fa-search text-gray-600 mr-3" aria-hidden="true"></i>
-                    <input id="search-input" type="text" placeholder="Search products" class="text-sm text-gray-800 bg-transparent outline-none w-64" title="Search by name"/>
+                    <input id="search-input" type="text" placeholder="Search products" class="text-sm text-gray-800 bg-transparent outline-none flex-1 min-w-0" title="Search by name"/>
                 </div>
 
                 <div class="price-toggle flex items-center bg-red-600 rounded-full p-1 shadow-sm" title="Toggle price mode">
