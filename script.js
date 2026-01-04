@@ -53,47 +53,155 @@ function sendToThermalPrinter(receiptText) {
     });
 }
 
-// Main handler for the new button
-function printThermalBill() {
+// ============================================
+// BLUETOOTH THERMAL PRINTER INTEGRATION
+// ============================================
+
+// Printer configuration
+const PRINTER_BLUETOOTH_ADDRESS = "86:67:7A:28:B6:5B";
+let printerConnected = false;
+let Printer = null;
+
+// Initialize Capacitor Printer plugin (only available in Capacitor app)
+async function initPrinter() {
+    try {
+        // Check if we're in a Capacitor environment
+        if (typeof window !== 'undefined' && window.Capacitor) {
+            // Try to load Capacitor plugins
+            try {
+                const { Plugins } = await import('@capacitor/core');
+                Printer = Plugins.Printer;
+                
+                // Auto-connect to printer on app start
+                await connectToPrinter();
+                console.log('Printer initialized and connected');
+            } catch (importError) {
+                console.log('Could not import Capacitor plugins:', importError);
+            }
+        } else {
+            console.log('Not in Capacitor environment - printer features will be disabled');
+            console.log('Note: Bluetooth printing only works in the Android app, not in browser');
+        }
+    } catch (error) {
+        console.log('Printer initialization error:', error);
+        // Fallback: printer features will be disabled
+    }
+}
+
+// Connect to Bluetooth printer
+async function connectToPrinter() {
+    if (!Printer) {
+        console.log('Printer plugin not available');
+        return false;
+    }
+    
+    try {
+        const result = await Printer.connect({ address: PRINTER_BLUETOOTH_ADDRESS });
+        if (result.success) {
+            printerConnected = true;
+            console.log('Printer connected successfully');
+            return true;
+        } else {
+            printerConnected = false;
+            console.error('Failed to connect to printer:', result.message);
+            return false;
+        }
+    } catch (error) {
+        console.error('Printer connection error:', error);
+        printerConnected = false;
+        return false;
+    }
+}
+
+// Check printer connection status
+async function checkPrinterConnection() {
+    if (!Printer) return false;
+    
+    try {
+        const result = await Printer.isConnected();
+        printerConnected = result.connected;
+        return printerConnected;
+    } catch (error) {
+        console.error('Check connection error:', error);
+        printerConnected = false;
+        return false;
+    }
+}
+
+// Print bill to Bluetooth thermal printer
+async function printBillToBluetoothPrinter(billData) {
+    if (!Printer) {
+        showNotification("Printer plugin not available. Please use the Android app.", "error");
+        return false;
+    }
+    
+    // Ensure printer is connected
+    if (!printerConnected) {
+        showNotification("Connecting to printer...", "info");
+        const connected = await connectToPrinter();
+        if (!connected) {
+            showNotification("Failed to connect to printer. Please check Bluetooth settings.", "error");
+            return false;
+        }
+    }
+    
+    try {
+        // Convert bill data to JSON string
+        const billJson = JSON.stringify(billData);
+        
+        showNotification("Printing bill...", "info");
+        
+        const result = await Printer.printBill({ billData: billJson });
+        
+        if (result.success) {
+            showNotification("Bill printed successfully!", "success");
+            return true;
+        } else {
+            showNotification("Print failed: " + (result.message || "Unknown error"), "error");
+            return false;
+        }
+    } catch (error) {
+        console.error('Print error:', error);
+        showNotification("Print error: " + error.message, "error");
+        return false;
+    }
+}
+
+// Main handler for the thermal printer button
+async function printThermalBill() {
     if (cart.length === 0) {
         showNotification("Cart is empty!", "error");
         return;
     }
+    
     const now = new Date();
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const tax = cartTaxPercent ? subtotal * cartTaxPercent / 100 : 0;
-    const discount = cartDiscountPercent ? subtotal * cartDiscountPercent / 100 : 0;
+    const taxRate = cartTaxPercent / 100;
+    const discountRate = cartDiscountPercent / 100;
+    const tax = subtotal * taxRate;
+    // Discount is applied to (subtotal + tax), not just subtotal
+    const discount = (subtotal + tax) * discountRate;
     const total = subtotal + tax - discount;
-    const bill = {
+    
+    // Prepare bill data in the format expected by the native plugin
+    const billData = {
         shopName: "Hello Plast Shop",
-        date: now.toLocaleDateString('en-IN') + " " + now.toLocaleTimeString('en-IN'),
+        date: now.toLocaleDateString('en-IN'),
+        time: now.toLocaleTimeString('en-IN'),
         items: cart.map(item => ({
-            name: item.name,
-            qty: item.quantity,
-            price: item.price
+            name: item.name || '',
+            size: item.size || '',
+            quantity: item.quantity || 0,
+            price: item.price || 0
         })),
         subtotal: subtotal,
         tax: tax,
         discount: discount,
         total: total
     };
-    showNotification("Printing...", "info");
-    fetch("http://127.0.0.1:3001/print", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bill),
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "ok") {
-            showNotification("Printed successfully", "success");
-        } else {
-            showNotification("Printer error: " + (data.error || "Unknown"), "error");
-        }
-    })
-    .catch(err => {
-        showNotification("Could not reach printer service", "error");
-    });
+    
+    // Print to Bluetooth printer
+    await printBillToBluetoothPrinter(billData);
 }
 // Product database - In a real app, this would come from a backend API
 const products = [
@@ -150,7 +258,10 @@ let priceMode = 'W';
 let isSearchActive = false; // Track if search is currently active
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize printer on page load
+document.addEventListener('DOMContentLoaded', async function() {
+    // Initialize printer connection (only works in Capacitor Android app)
+    await initPrinter();
     // Always show all products on load
     displayProducts('all');
 
@@ -1078,13 +1189,30 @@ function sendToPrinter(billData) {
 
 // Show notification
 function showNotification(message, type = 'success') {
-    // Only show notifications for errors (silent success for touch workflows)
-    if (type !== 'error') return;
+    // Show all notification types (including info and success for printer operations)
     const notification = document.createElement('div');
-    notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 bg-red-500 text-white';
+    let bgColor = 'bg-gray-500';
+    let icon = 'fa-info-circle';
+    
+    switch(type) {
+        case 'success':
+            bgColor = 'bg-green-500';
+            icon = 'fa-check-circle';
+            break;
+        case 'error':
+            bgColor = 'bg-red-500';
+            icon = 'fa-exclamation-circle';
+            break;
+        case 'info':
+            bgColor = 'bg-blue-500';
+            icon = 'fa-info-circle';
+            break;
+    }
+    
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${bgColor} text-white`;
     notification.innerHTML = `
         <div class="flex items-center">
-            <i class="fas fa-exclamation-circle mr-2"></i>
+            <i class="fas ${icon} mr-2"></i>
             <span>${message}</span>
         </div>
     `;
