@@ -191,18 +191,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add list view toggle functionality to the list button
     const listViewToggle = document.getElementById('list-view-toggle');
     if (listViewToggle) {
+        // Function to update button icon based on view state
+        function updateListViewIcon() {
+            const icon = listViewToggle.querySelector('i');
+            if (icon) {
+                if (isCompactView) {
+                    // List view is active, show tiles/grid icon
+                    icon.className = 'fas fa-th';
+                    listViewToggle.title = 'Switch to tiles view';
+                } else {
+                    // Tiles view is active, show list icon
+                    icon.className = 'fas fa-list';
+                    listViewToggle.title = 'Switch to list view';
+                }
+            }
+            // Visual feedback: change button appearance when list view is active
+            if (isCompactView) {
+                // List view is active, show tiles icon with white background and blue icon
+                listViewToggle.classList.add('bg-white');
+                listViewToggle.classList.remove('text-white');
+                // Set icon color to blue to be visible on white background
+                const icon = listViewToggle.querySelector('i');
+                if (icon) icon.style.color = '#ffffff'; // white
+            } else {
+                // Tiles view is active, show list icon with transparent background and white icon
+                listViewToggle.classList.remove('bg-white');
+                listViewToggle.classList.add('text-white');
+                const icon = listViewToggle.querySelector('i');
+                if (icon) icon.style.color = '#ffffff'; // white
+            }
+        }
+        
         listViewToggle.onclick = function() {
             isCompactView = !isCompactView;
             displayProducts(currentCategory);
-            // Visual feedback: change button appearance when list view is active
-            if (isCompactView) {
-                this.classList.add('bg-white', 'text-blue-500');
-                this.classList.remove('text-white');
-            } else {
-                this.classList.remove('bg-white', 'text-blue-500');
-                this.classList.add('text-white');
-            }
+            updateListViewIcon();
         };
+        
+        // Initialize icon on page load
+        updateListViewIcon();
     }
     setInterval(updateTime, 1000);
     setupKeyboardShortcuts();
@@ -210,9 +237,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cartPanel) cartPanel.classList.add('hidden');
     attachSearchHandler();
     // ...existing code...
+    // Reset tax and discount to 0 on page load
+    cartTaxPercent = 0;
+    cartDiscountPercent = 0;
+    
     // Attach handler for cart tax input
     const cartTaxInput = document.getElementById('cart-tax-input');
     if (cartTaxInput) {
+        cartTaxInput.value = 0; // Reset to 0 on refresh
         cartTaxInput.addEventListener('input', function() {
             cartTaxPercent = parseFloat(cartTaxInput.value) || 0;
             updateCart();
@@ -221,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach handler for cart discount input
     const cartDiscountInput = document.getElementById('cart-discount-input');
     if (cartDiscountInput) {
+        cartDiscountInput.value = 0; // Reset to 0 on refresh
         cartDiscountInput.addEventListener('input', function() {
             cartDiscountPercent = parseFloat(cartDiscountInput.value) || 0;
             updateCart();
@@ -283,6 +316,13 @@ function setupKeyboardShortcuts() {
             return;
         }
         
+        // Enter key on search input - blur to minimize keyboard
+        if (e.key === 'Enter' && document.activeElement.id === 'search-input') {
+            e.preventDefault();
+            document.activeElement.blur();
+            return;
+        }
+        
         // For all other inputs (tax, etc.), let Enter work normally
         // This allows natural form navigation (move to next field, submit, etc.)
         
@@ -337,15 +377,41 @@ function displayProducts(category = 'all') {
     }
 
     if (isCompactView) {
-        // Dense, text-only mode
+        // Dense, text-only mode with size selection
         productGrid.innerHTML = filteredProducts.map(product => {
-            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-1 flex items-center'>`;
-            html += `<span class='font-semibold text-sm flex-1'>${product.name.trim()}</span>`;
-            html += `<span class='flex gap-1 ml-2'>` + (product.sizes||[]).map(size => `
-                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${getDisplayPrice(product, size)}</span>
-            `).join('') + `</span>`;
-            html += `<input type='number' id='qty-${product.id}' min='1' max='10000' value='1' class='ml-2 w-16 quantity-input text-xs px-1 py-0.5' placeholder='1'>`;
-            html += `<button class='ml-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            const sizes = product.sizes || [];
+            const defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+            
+            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-2 flex items-center gap-2'>`;
+            // Product name on left with fixed width for alignment
+            html += `<span class='font-semibold text-sm' style='width: 150px; min-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>${product.name.trim()}</span>`;
+            
+            // Size selection buttons - 5px margin from product name, aligned consistently
+            html += `<div class='flex gap-1 items-center' style='margin-left: 5px;'>`;
+            html += sizes.map(size => `
+                <button type='button' 
+                        class='size-btn-list border border-gray-400 rounded px-2 py-1 text-xs${(size === defaultSize) ? ' selected' : ''}' 
+                        data-size='${size}' 
+                        data-product='${product.id}' 
+                        onclick="selectSize('${product.id}', '${size}')"
+                        title='${size}: ₹${getDisplayPrice(product, size)}'>
+                    ${size}<br/><span style='font-size: 0.65rem;'>₹${getDisplayPrice(product, size)}</span>
+                </button>
+            `).join('');
+            html += `</div>`;
+            
+            // Spacer to push quantity and button to right
+            html += `<div class='flex-1'></div>`;
+            
+            // Quantity input
+            html += `<input type='number' id='qty-${product.id}' min='0' max='10000' value='0' class='w-16 quantity-input text-xs px-2 py-1 border border-gray-300 rounded' placeholder='0'>`;
+            
+            // Add to cart button
+            html += `<button class='bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            
+            // Hidden input for selected size
+            html += `<input type='hidden' id='selected-size-${product.id}' value='${defaultSize}'>`;
+            
             html += `</div>`;
             return html;
         }).join('');
@@ -363,11 +429,11 @@ function displayProducts(category = 'all') {
                 </div>
                 
                 <!-- Product Name -->
-                <h3 class="font-semibold text-base mb-0 text-center">${product.name}</h3>
+                <h3 class="font-semibold text-base mb-0 text-center" style="margin-top: 2px; line-height: 1.2;">${product.name}</h3>
                 
                 <!-- Size Selection -->
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                <div class="mb-2" style="margin-top: 2px;">
+                    <label class="block text-sm font-medium text-gray-700 mb-0.5" style="margin-bottom: 2px;">Size</label>
                     <div class="size-grid">
                         ${sizes.map(size => `
                             <button type="button" 
@@ -499,14 +565,41 @@ function displayProductsFiltered(filteredProducts) {
         return base;
     }
     if (isCompactView) {
+        // Dense, text-only mode with size selection
         productGrid.innerHTML = filteredProducts.map(product => {
-            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-1 flex items-center'>`;
-            html += `<span class='font-semibold text-sm flex-1'>${product.name.trim()}</span>`;
-            html += `<span class='flex gap-1 ml-2'>` + (product.sizes||[]).map(size => `
-                <span class='bg-gray-100 rounded px-2 py-0.5 text-xs'>${size}: ₹${getDisplayPrice(product, size)}</span>
-            `).join('') + `</span>`;
-            html += `<input type='number' id='qty-${product.id}' min='1' max='10000' value='1' class='ml-2 w-16 quantity-input text-xs px-1 py-0.5' placeholder='1'>`;
-            html += `<button class='ml-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            const sizes = product.sizes || [];
+            const defaultSize = sizes.length === 1 ? sizes[0] : (sizes.includes('1500') ? '1500' : sizes[0]);
+            
+            let html = `<div class='product-row bg-white border-b border-gray-200 px-2 py-2 flex items-center gap-2'>`;
+            // Product name on left with fixed width for alignment
+            html += `<span class='font-semibold text-sm' style='width: 150px; min-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>${product.name.trim()}</span>`;
+            
+            // Size selection buttons - 5px margin from product name, aligned consistently
+            html += `<div class='flex gap-1 items-center' style='margin-left: 5px;'>`;
+            html += sizes.map(size => `
+                <button type='button' 
+                        class='size-btn-list border border-gray-400 rounded px-2 py-1 text-xs${(size === defaultSize) ? ' selected' : ''}' 
+                        data-size='${size}' 
+                        data-product='${product.id}' 
+                        onclick="selectSize('${product.id}', '${size}')"
+                        title='${size}: ₹${getDisplayPrice(product, size)}'>
+                    ${size}<br/><span style='font-size: 0.65rem;'>₹${getDisplayPrice(product, size)}</span>
+                </button>
+            `).join('');
+            html += `</div>`;
+            
+            // Spacer to push quantity and button to right
+            html += `<div class='flex-1'></div>`;
+            
+            // Quantity input
+            html += `<input type='number' id='qty-${product.id}' min='0' max='10000' value='0' class='w-16 quantity-input text-xs px-2 py-1 border border-gray-300 rounded' placeholder='0'>`;
+            
+            // Add to cart button
+            html += `<button class='bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold touch-button' onclick='addToCartWithQuantityAndColor(${product.id})'><i class='fas fa-plus mr-1'></i>Add</button>`;
+            
+            // Hidden input for selected size
+            html += `<input type='hidden' id='selected-size-${product.id}' value='${defaultSize}'>`;
+            
             html += `</div>`;
             return html;
         }).join('');
@@ -525,11 +618,11 @@ function displayProductsFiltered(filteredProducts) {
                 </div>
                 
                 <!-- Product Name -->
-                <h3 class="font-semibold text-base mb-0 text-center">${product.name}</h3>
+                <h3 class="font-semibold text-base mb-0 text-center" style="margin-top: 2px; line-height: 1.2;">${product.name}</h3>
                 
                 <!-- Size Selection -->
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Size</label>
+                <div class="mb-2" style="margin-top: 2px;">
+                    <label class="block text-sm font-medium text-gray-700 mb-0.5" style="margin-bottom: 2px;">Size</label>
                     <div class="size-grid">
                         ${sizes.map(size => `
                             <button type="button" 
@@ -903,11 +996,11 @@ function generateBill() {
             const lineTotal = qty * price;
             return `
                 <tr>
-                    <td style="padding:8px">${name}</td>
-                    <td style="text-align:center;padding:8px">${size}</td>
-                    <td style="text-align:center;padding:8px">${qty}</td>
-                    <td style="text-align:center;padding:8px">₹${price.toFixed(2)}</td>
-                    <td style="text-align:right;padding:8px">₹${lineTotal.toFixed(2)}</td>
+                    <td style="padding:4px; font-weight: bold;">${name}</td>
+                    <td style="text-align:center;padding:4px">${size}</td>
+                    <td style="text-align:center;padding:4px">${qty}</td>
+                    <td style="text-align:center;padding:4px">₹${price.toFixed(2)}</td>
+                    <td style="text-align:right;padding:4px">₹${lineTotal.toFixed(2)}</td>
                 </tr>`;
         }).join('');
     }
