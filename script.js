@@ -425,28 +425,14 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             const discountInput = document.getElementById('cart-discount-input');
             if (discountInput) {
-                // Focus the input first
+                // Focus the discount input
                 discountInput.focus();
-                
-                // Set cursor to the right of the value (at the end)
-                // For number inputs, we need to ensure the cursor is positioned correctly
-                const setCursorPosition = () => {
-                    const valueLength = discountInput.value.length;
-                    // Position cursor at the end (right of the last character)
+                // Set cursor to the end of the value
+                setTimeout(() => {
                     if (discountInput.setSelectionRange) {
-                        discountInput.setSelectionRange(valueLength, valueLength);
-                    } else if (discountInput.createTextRange) {
-                        // Fallback for older browsers
-                        const range = discountInput.createTextRange();
-                        range.collapse(false);
-                        range.select();
+                        discountInput.setSelectionRange(discountInput.value.length, discountInput.value.length);
                     }
-                };
-                
-                // Set cursor position immediately and after a small delay for better compatibility
-                setCursorPosition();
-                setTimeout(setCursorPosition, 10);
-                setTimeout(setCursorPosition, 50);
+                }, 10);
             }
             return;
         }
@@ -1117,7 +1103,7 @@ function clearCart() {
 // Generate bill and print
 function generateBill() {
     if (cart.length === 0) {
-        showNotification('Cart is empty!', 'error');
+        // Silent error - no notification
         return;
     }
     
@@ -1196,7 +1182,7 @@ function generateBill() {
     window.addEventListener('afterprint', restoreTitle);
 
     window.print();
-    showNotification('Bill generated successfully!');
+    // Notification removed - bill generation is silent
 }
 
 // Placeholder function for future printer integration
