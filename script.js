@@ -425,11 +425,28 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             const discountInput = document.getElementById('cart-discount-input');
             if (discountInput) {
+                // Focus the input first
                 discountInput.focus();
+                
                 // Set cursor to the right of the value (at the end)
-                setTimeout(() => {
-                    discountInput.setSelectionRange(discountInput.value.length, discountInput.value.length);
-                }, 0);
+                // For number inputs, we need to ensure the cursor is positioned correctly
+                const setCursorPosition = () => {
+                    const valueLength = discountInput.value.length;
+                    // Position cursor at the end (right of the last character)
+                    if (discountInput.setSelectionRange) {
+                        discountInput.setSelectionRange(valueLength, valueLength);
+                    } else if (discountInput.createTextRange) {
+                        // Fallback for older browsers
+                        const range = discountInput.createTextRange();
+                        range.collapse(false);
+                        range.select();
+                    }
+                };
+                
+                // Set cursor position immediately and after a small delay for better compatibility
+                setCursorPosition();
+                setTimeout(setCursorPosition, 10);
+                setTimeout(setCursorPosition, 50);
             }
             return;
         }
