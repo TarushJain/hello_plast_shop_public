@@ -100,7 +100,7 @@ const products = [
     //Packaging
     { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg", sizes: ["1"], prices: { "1":310 } },
     // Casseroles
-    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "casseroles/cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
+    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: <img src="cresto.jpg">, sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
     /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "casseroles/croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
     /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "casseroles/croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 } },
     /*done*/  { id: 4, name: "Cuba", category: "casseroles", image: "casseroles/cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 } },
@@ -1124,4 +1124,5 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
