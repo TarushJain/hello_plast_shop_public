@@ -227,9 +227,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     preventZoomOnTouchDevices();
+    // Update header height immediately and after a short delay to ensure accurate measurement
     updateHeaderHeightCSSVar();
+    setTimeout(updateHeaderHeightCSSVar, 100);
+    setTimeout(updateHeaderHeightCSSVar, 500);
     window.addEventListener('resize', updateHeaderHeightCSSVar);
-    window.addEventListener('orientationchange', updateHeaderHeightCSSVar);
+    window.addEventListener('orientationchange', function() {
+        setTimeout(updateHeaderHeightCSSVar, 100);
+    });
 });
 
 // Prevent pinch and double-tap zoom on touch devices
@@ -265,11 +270,20 @@ function setupKeyboardShortcuts() {
             const productId = parseInt(document.activeElement.id.replace('qty-', ''));
             if (!isNaN(productId)) {
                 addToCartWithQuantityAndColor(productId);
+                // Blur the input to minimize/hide the keyboard
+                document.activeElement.blur();
             }
             return; // Don't process further for quantity inputs
         }
         
-        // For all other inputs (tax, discount, etc.), let Enter work normally
+        // Enter key on discount input - blur to minimize keyboard
+        if (e.key === 'Enter' && document.activeElement.id === 'cart-discount-input') {
+            e.preventDefault();
+            document.activeElement.blur();
+            return;
+        }
+        
+        // For all other inputs (tax, etc.), let Enter work normally
         // This allows natural form navigation (move to next field, submit, etc.)
         
         // Escape key to clear quantity input
@@ -289,8 +303,13 @@ function setupKeyboardShortcuts() {
 function updateHeaderHeightCSSVar() {
     const header = document.querySelector('header');
     if (!header) return;
-    const height = header.getBoundingClientRect().height + 'px';
-    document.documentElement.style.setProperty('--header-height', height);
+    // Force a reflow to ensure accurate height measurement
+    void header.offsetHeight;
+    const height = header.getBoundingClientRect().height;
+    const heightPx = Math.ceil(height) + 'px';
+    // Set on both documentElement and body for maximum compatibility
+    document.documentElement.style.setProperty('--header-height', heightPx);
+    document.body.style.setProperty('--header-height', heightPx);
 }
 
 // Update current time
