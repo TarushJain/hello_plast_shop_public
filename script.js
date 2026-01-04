@@ -98,7 +98,7 @@ function printThermalBill() {
 // Product database - In a real app, this would come from a backend API
 const products = [
     //Packaging
-    { id: 1, name: "Packaging", category: "Packaging", image: "casseroles/crest.jpg", sizes: ["1"], prices: { "1":310 } },
+    { id: 1, name: "Packaging", category: "Packaging", image: "packaging.jpg", sizes: ["1"], prices: { "1":310 } },
     // Casseroles
     /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image:"cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 } },
     /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435} },
@@ -1124,6 +1124,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
