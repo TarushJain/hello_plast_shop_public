@@ -218,43 +218,45 @@ const products = [
     //Packaging
     { id: 1, name: "Packaging", category: "Packaging", image: "packaging.jpg", sizes: ["1"], prices: { "1":310 }, retailPrices: { "1":320 } },
     // Casseroles
-{ id: 7, name: "Cresto ", category: "casseroles", image: "cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 }, retailPrices: { "2400": 200, "3000": 230, "5000": 310 } },
-{ id: 2, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":118, "2000":140, "3000":190 , "4500":250,"5500":345,"7000":450} },
-{ id: 3, name: "Croma SS", category: "casseroles", image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 }, retailPrices: { "2000": 175, "3000": 230, "3500": 240 , "4500":320, "5000":340 } },
-{ id: 4, name: "Cuba", category: "casseroles", image: "cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 }, retailPrices: { "1700": 130, "2000": 150, "3200": 195, "4500":280 } },
-{ id: 5, name: "Lotus", category: "casseroles", image: "lotus blue.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 } },
-{ id: 6, name: "Onyx", category: "casseroles", image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
-{ id: 8, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 } },
-{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000","4200", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330}, retailPrices: { "2000" : 195,  "3000" :245, "4200":305, "4500":340} },
-{ id: 31, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
+{ id: 2, name: "Cresto ", category: "casseroles", image: "cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 }, retailPrices: { "2400": 200, "3000": 230, "5000": 310 } },
+{ id: 3, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":118, "2000":140, "3000":190 , "4500":250,"5500":345,"7000":450} },
+{ id: 4, name: "Croma SS", category: "casseroles", image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 }, retailPrices: { "2000": 175, "3000": 230, "3500": 240 , "4500":320, "5000":340 } },
+{ id: 5, name: "Cuba", category: "casseroles", image: "cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 }, retailPrices: { "1700": 130, "2000": 150, "3200": 195, "4500":280 } },
+{ id: 6, name: "Lotus", category: "casseroles", image: "lotus blue.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 } },
+{ id: 7, name: "Onyx", category: "casseroles", image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
+{ id: 9, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 } },
+{ id: 10, name: "Zigma Deluxe", category: "casseroles", image: "ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000","4200", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330}, retailPrices: { "2000" : 195,  "3000" :245, "4200":305, "4500":340} },
+{ id: 11, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
     // Cookers
-    /*done*/{ id: 10, name: "Handi Steel ", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350}, retailPrices: {"3":660, "5":700,"7":740,"10":1210,"12":1285,"15":1360} },
-    /*done*/{ id: 11, name: "Steel Cooker ", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325}, retailPrices: {"2":625,"3":645, "5":685,"7":725,"10":1185,"12":1260,"15":1335} },
+    /*done*/{ id: 12, name: "Handi Steel ", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350}, retailPrices: {"3":660, "5":700,"7":740,"10":1210,"12":1285,"15":1360} },
+    /*done*/{ id: 13, name: "Steel Cooker ", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325}, retailPrices: {"2":625,"3":645, "5":685,"7":725,"10":1185,"12":1260,"15":1335} },
     //{ id: 12, name: "Matki Cooker", category: "cookers", image: "cookers/Matki_cooker.jpg", sizes: ["1000", "1500", "3000"], prices: { "1000": 399, "1500": 449, "3000": 549 } },
-    /*done*/{ id: 13, name: "Matki Steel", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":480, "3":650, "5":690,"7":730}, retailPrices: { "2":490, "3":660, "5":700,"7":740} },
+    /*done*/{ id: 14, name: "Matki Steel", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":480, "3":650, "5":690,"7":730}, retailPrices: { "2":490, "3":660, "5":700,"7":740} },
     
     // Kettles
-    /*done*/{ id: 14, name: "Coral Kettle", category: "kettles", image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":220 }},
-    /*done*/{ id: 15, name: "Cosmos Kettle", category: "kettles", image: "Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157}, retailPrices: { "800": 157, "1200": 167} },
-    /*done*/{ id: 16, name: "Zigma Kettle", category: "kettles", image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 220, "1200": 230, "1600": 260 } },
+    /*done*/{ id: 15, name: "Coral Kettle", category: "kettles", image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":220 }},
+    /*done*/{ id: 16, name: "Cosmos Kettle", category: "kettles", image: "Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157}, retailPrices: { "800": 157, "1200": 167} },
+    /*done*/{ id: 17, name: "Zigma Kettle", category: "kettles", image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 220, "1200": 230, "1600": 260 } },
     
     // Tiffins
-    /*done*/{ id: 17, name: "Apple", category: "tiffins", image: "Apple steel-pp.jpg", sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 }, retailPrices: { "Plastic":60 , "Steel":70 } },
-    /*done*/{ id: 18, name: "Loto", category: "tiffins", image: "jolly_tiffin.jpeg", sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 }, retailPrices: { "Plastic":175 , "Steel":215 } },
-    /*done*/{ id: 19, name: "Bonton", category: "tiffins", image: "BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 }, retailPrices: { "1": 95 } },
-    /*done*/ { id: 20, name: "Cammy 3 ", category: "tiffins", image: "cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 }, retailPrices: { "3":258, "4": 325 } },
-    /*done*/{ id: 21, name: "Cherish", category: "tiffins", image: "Cherish Tifin blue.jpg", sizes: ["3", "4"], prices: { "3":475, "4":555}, retailPrices: { "3":485, "4":565} },
-    /*done*/ { id: 22, name: "Coral 3", category: "tiffins", image: "Corel 3 RED.jpg", sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220}, retailPrices: {"2":172 , "3":192 , "4":225 ,"4+1":230} },
-    /*done*/{ id: 23, name: "Happytime", category: "tiffins", image: "HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 }, retailPrices: { "1": 75 } },
-    /*done*/{ id: 24, name: "Leo ", category: "tiffins", image: "LEO_2_ORANGE.jpg", sizes: ["2", "3"], prices: { "2": 165, "3": 205}, retailPrices: { "2": 175, "3": 215} },
-    /*done*/ { id: 25, name: "Loto SS", category: "tiffins", image: "LOTO DELUXE_blue.jpg", sizes: ["3", "4"], prices: { "3":222, "4": 242}, retailPrices: { "3":232, "4": 252} },
-    /*done*/ { id: 26, name: "Loto", category: "tiffins", image: "loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 }, retailPrices: {"2+1":172 , "3+1":187 , "4":207 } },
-    /*done*/{ id: 27, name: "Reo ", category: "tiffins", image: "REO_3_TIFFEN.jpeg", sizes: ["2", "3"], prices: { "2": 118, "3": 143}, retailPrices: { "2": 128, "3": 153} },
-    /*done*/ { id: 28, name: "Zigma ", category: "tiffins", image: "zigma_tiffen_ black.jpg", sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 }, retailPrices: { "3": 580, "4": 660, "5": 1210 } },
-    /*done*/{ id: 31, name: "Flora", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 }, retailPrices: {"Steel":273 } },
+    /*done*/{ id: 18, name: "Apple", category: "tiffins", image: "Apple steel-pp.jpg", sizes: ["Plastic", "Steel"], prices: { "Plastic":50 , "Steel":60 }, retailPrices: { "Plastic":60 , "Steel":70 } },
+    /*done*/{ id: 19, name: "Loto", category: "tiffins", image: "jolly_tiffin.jpeg", sizes: ["Plastic", "Steel"], prices: { "Plastic":165 , "Steel":205 }, retailPrices: { "Plastic":175 , "Steel":215 } },
+    /*done*/{ id: 20, name: "Bonton", category: "tiffins", image: "BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 }, retailPrices: { "1": 95 } },
+    /*done*/ { id: 21, name: "Cammy 3 ", category: "tiffins", image: "cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 }, retailPrices: { "3":258, "4": 325 } },
+    /*done*/{ id: 22, name: "Cherish", category: "tiffins", image: "Cherish Tifin blue.jpg", sizes: ["3", "4"], prices: { "3":475, "4":555}, retailPrices: { "3":485, "4":565} },
+    /*done*/ { id: 23, name: "Coral 3", category: "tiffins", image: "Corel 3 RED.jpg", sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220}, retailPrices: {"2":172 , "3":192 , "4":225 ,"4+1":230} },
+    /*done*/{ id: 24, name: "Happytime", category: "tiffins", image: "HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 }, retailPrices: { "1": 75 } },
+    /*done*/{ id: 25, name: "Leo ", category: "tiffins", image: "LEO_2_ORANGE.jpg", sizes: ["2", "3"], prices: { "2": 165, "3": 205}, retailPrices: { "2": 175, "3": 215} },
+    /*done*/ { id: 26, name: "Loto SS", category: "tiffins", image: "LOTO DELUXE_blue.jpg", sizes: ["3", "4"], prices: { "3":222, "4": 242}, retailPrices: { "3":232, "4": 252} },
+    /*done*/ { id: 27, name: "Loto", category: "tiffins", image: "loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 }, retailPrices: {"2+1":172 , "3+1":187 , "4":207 } },
+    /*done*/{ id: 28, name: "Reo ", category: "tiffins", image: "REO_3_TIFFEN.jpeg", sizes: ["2", "3"], prices: { "2": 118, "3": 143}, retailPrices: { "2": 128, "3": 153} },
+    /*done*/ { id: 29, name: "Zigma ", category: "tiffins", image: "zigma_tiffen_ black.jpg", sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 }, retailPrices: { "3": 580, "4": 660, "5": 1210 } },
+    /*done*/{ id: 30, name: "Flora", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 }, retailPrices: {"Steel":273 } },
     // Water Jugs
-    /*done*/{ id: 29, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 240, "24": 495} },
-    /*done*/{ id: 30, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890}, retailPrices: {"5":370 , "7.5": 490, "12.5":595 , "18": 900} }
+    /*done*/{ id: 31, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 240, "24": 495} },
+    /*done*/{ id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890}, retailPrices: {"5":370 , "7.5": 490, "12.5":595 , "18": 900} }
+    //Sets
+{ id: 33, name: "Casa Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":545}, retailPrices: {"2400/3000/5000":560} }
 ];
 
 // Global variables
@@ -1313,4 +1315,5 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
