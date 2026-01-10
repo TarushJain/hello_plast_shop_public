@@ -231,8 +231,7 @@ const products = [
 { id: 12, name: "Handi (ISI)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425}, retailPrices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425} },
 { id: 13, name: "Handi (anodise)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5","7"], prices: { "3":960, "5":1010,"7":1060}, retailPrices: {  "3":960, "5":1010,"7":1060 } },   
 { id: 40, name: "Outer-Lid (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":685, "5":755 }, retailPrices: {  "3":685, "5":755 } },
-{ id: 41, name: "Matki steel(Tri-ply)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":1150, "5":1250 }, retailPrices: {  "3":1150, "5":1250 } }, 
-     
+{ id: 41, name: "Matki steel(Tri-ply)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":1150, "5":1250 }, retailPrices: {  "3":1150, "5":1250 } },     
 { id: 14, name: "Matki (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":525, "3":700, "5":740,"7":780}, retailPrices: {"2":525, "3":700, "5":740,"7":780} },
 { id: 38, name: "Royal(ISI)", category: "cookers", image: "matki_steel_5Lt..png", sizes: ["2","3", "5","7","10","12","15"], prices: { "2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400}, retailPrices: {"2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400 } },    
 { id: 39, name: "Royal (anodise)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5","7"], prices: { "3":945, "5":995,"7":1045}, retailPrices: { "3":945, "5":995,"7":1045} },
@@ -255,7 +254,7 @@ const products = [
 { id: 23, name: "Coral ", category: "tiffins", image: "Corel 3 RED.jpg", sizes: ["2", "3", "4","4+1"], prices: {"2":162 , "3":182 , "4":215 ,"4+1":220}, retailPrices: {"2":165 , "3":185 , "4":220 ,"4+1":225} },
 { id: 24, name: "Happytime", category: "tiffins", image: "HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 }, retailPrices: { "1": 65 } },
 { id: 25, name: "Leo ", category: "tiffins", image: "LEO_2_ORANGE.jpg", sizes: ["2", "3"], prices: { "2": 165, "3": 205}, retailPrices: { "2": 170, "3": 210} },
-{ id: 26, name: "Loto SS", category: "tiffins", image: "LOTO DELUXE_blue.jpg", sizes: ["3", "4"], prices: { "3":222, "4": 242}, retail    Prices: { "3":225, "4": 245} },
+{ id: 26, name: "Loto SS", category: "tiffins", image: "LOTO DELUXE_blue.jpg", sizes: ["3", "4"], prices: { "3":222, "4": 242}, retailPrices: { "3":225, "4": 245} },
 { id: 27, name: "Loto", category: "tiffins", image: "loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 }, retailPrices: {"2+1":165 , "3+1":180 , "4":200 } },
 { id: 28, name: "Reo ", category: "tiffins", image: "REO_3_TIFFEN.jpeg", sizes: ["2", "3"], prices: { "2": 118, "3": 143}, retailPrices: { "2": 120, "3": 145} },
 { id: 29, name: "Zigma ", category: "tiffins", image: "zigma_tiffen_ black.jpg", sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 }, retailPrices: { "3": 590, "4": 670, "5": 1250 } },
@@ -1328,6 +1327,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
