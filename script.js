@@ -254,9 +254,9 @@ const products = [
     /*done*/{ id: 30, name: "Flora", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 }, retailPrices: {"Steel":273 } },
     // Water Jugs
     /*done*/{ id: 31, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 240, "24": 495} },
-    /*done*/{ id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890}, retailPrices: {"5":370 , "7.5": 490, "12.5":595 , "18": 900} }
+    /*done*/{ id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5", "12.5", "18"], prices: {"5":360 , "7.5": 480, "12.5":585 , "18": 890}, retailPrices: {"5":370 , "7.5": 490, "12.5":595 , "18": 900} },
     //Sets
-{ id: 33, name: "Casa Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":545}, retailPrices: {"2400/3000/5000":560} }
+ { id: 33, name: "Casa Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":545}, retailPrices: {"2400/3000/5000":560} }
 ];
 
 // Global variables
@@ -1315,5 +1315,6 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
