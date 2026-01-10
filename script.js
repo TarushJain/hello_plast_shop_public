@@ -274,8 +274,8 @@ const products = [
 { id: 47, name: "Crystal", category: "tiffins", image: "flora_tn.jpeg", sizes: ["1","2"], prices: {"1":55,"2":88 }, retailPrices: {"1":57,"2":92} },
 { id: 48, name: "Tip Top", category: "tiffins", image: "flora_in.jpeg", sizes: ["1"], prices: {"1":60 }, retailPrices: {"1":60 } },
 { id: 49, name: "Picnic", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["3"], prices: {"3":110 }, retailPrices: {"3":120 } },
-{ id: 50, name: "Lock dabbi small", category: "tiffins", image: "", sizes: ["small"], prices: {"small":40 }, retailPrices: {"small":42 } },
-{ id: 51, name: "Lock dabbi big", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["big"], prices: {"big":60 }, retailPrices: {"big":62 } },
+{ id: 50, name: "Lock dabbi small", category: "tiffins", image: "lock dabbi small.jpeg", sizes: ["small"], prices: {"small":40 }, retailPrices: {"small":42 } },
+{ id: 51, name: "Lock dabbi big", category: "tiffins", image: "Lock dabbi big.jpeg", sizes: ["big"], prices: {"big":60 }, retailPrices: {"big":62 } },
     // Water Jugs
 { id: 31, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 250, "24": 500} },
 { id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5","10", "12.5", "18"], prices: {"5":360 , "7.5": 480, "10":585, "12.5":705 , "18": 890}, retailPrices: {"5":375 , "7.5": 500, "10":600, "12.5":730 , "18": 915} },
@@ -1344,6 +1344,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
