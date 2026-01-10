@@ -229,17 +229,17 @@ const products = [
 { id: 11, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
     // Cookers
 { id: 12, name: "Handi (ISI)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425}, retailPrices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425} },
-{ id: 13, name: "Handi (anodise)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5","7"], prices: { "3":960, "5":1010,"7":1060}, retailPrices: {  "3":960, "5":1010,"7":1060 } },   
-{ id: 40, name: "Outer-Lid (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":685, "5":755 }, retailPrices: {  "3":685, "5":755 } },
+{ id: 13, name: "Handi (anodise)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7"], prices: { "3":960, "5":1010,"7":1060}, retailPrices: {  "3":960, "5":1010,"7":1060 } },   
+{ id: 40, name: "Outer-Lid (ISI)", category: "cookers", image: "matki_steel_5.png", sizes: ["3", "5"], prices: { "3":685, "5":755 }, retailPrices: {  "3":685, "5":755 } },
 { id: 41, name: "Matki steel(Tri-ply)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":1150, "5":1250 }, retailPrices: {  "3":1150, "5":1250 } },     
 { id: 14, name: "Matki (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":525, "3":700, "5":740,"7":780}, retailPrices: {"2":525, "3":700, "5":740,"7":780} },
-{ id: 38, name: "Royal(ISI)", category: "cookers", image: "matki_steel_5Lt..png", sizes: ["2","3", "5","7","10","12","15"], prices: { "2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400}, retailPrices: {"2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400 } },    
-{ id: 39, name: "Royal (anodise)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5","7"], prices: { "3":945, "5":995,"7":1045}, retailPrices: { "3":945, "5":995,"7":1045} },
-{ id: 42, name: "Royal steel (Triply)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":1100, "5":1200 }, retailPrices: {  "3":1100, "5":1200 } },
-{ id: 43, name: "Lagan 8G (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5","7"], prices: { "3":580, "5":600,"7":620 }, retailPrices: { "3":580, "5":600,"7":620 } },
-{ id: 44, name: "Hello 10G", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["1.5","2","3", "5","7"], prices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 }, retailPrices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 } },
-{ id: 45, name: "Lagan Handi 10G", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2","3", "5","8"], prices: {"2":435 ,"3":510, "5":530, "8":560 }, retailPrices: {"2":435 ,"3":510, "5":530, "8":560  } },
-{ id: 46, name: "G-star 11G", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":405, "5":425 }, retailPrices: {  "3":405, "5":425 } },
+{ id: 38, name: "Royal(ISI)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: { "2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400}, retailPrices: {"2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400 } },    
+{ id: 39, name: "Royal (anodise)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5","7"], prices: { "3":945, "5":995,"7":1045}, retailPrices: { "3":945, "5":995,"7":1045} },
+{ id: 42, name: "Royal steel (Triply)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":1100, "5":1200 }, retailPrices: {  "3":1100, "5":1200 } },
+{ id: 43, name: "Lagan 8G (ISI)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5","7"], prices: { "3":580, "5":600,"7":620 }, retailPrices: { "3":580, "5":600,"7":620 } },
+{ id: 44, name: "Hello 10G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["1.5","2","3", "5","7"], prices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 }, retailPrices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 } },
+{ id: 45, name: "Lagan Handi 10G", category: "cookers", image: "handi_page.jpg", sizes: ["2","3", "5","8"], prices: {"2":435 ,"3":510, "5":530, "8":560 }, retailPrices: {"2":435 ,"3":510, "5":530, "8":560  } },
+{ id: 46, name: "G-star 11G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":405, "5":425 }, retailPrices: {  "3":405, "5":425 } },
     // Kettles
 { id: 15, name: "Coral Kettle", category: "kettles", image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
 { id: 16, name: "Cosmos Kettle", category: "kettles", image: "Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157}, retailPrices: { "800": 150, "1200": 160} },
@@ -259,6 +259,11 @@ const products = [
 { id: 28, name: "Reo ", category: "tiffins", image: "REO_3_TIFFEN.jpeg", sizes: ["2", "3"], prices: { "2": 118, "3": 143}, retailPrices: { "2": 120, "3": 145} },
 { id: 29, name: "Zigma ", category: "tiffins", image: "zigma_tiffen_ black.jpg", sizes: ["3", "4", "5"], prices: { "3": 570, "4": 650, "5": 1200 }, retailPrices: { "3": 590, "4": 670, "5": 1250 } },
 { id: 30, name: "Flora", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 }, retailPrices: {"Steel":270 } },
+{ id: 47, name: "Crystal", category: "tiffins", image: "flora_tn.jpeg", sizes: ["1","2"], prices: {"1":55,"2":88 }, retailPrices: {"1":57,"2":92} },
+{ id: 48, name: "Tip Top", category: "tiffins", image: "flora_in.jpeg", sizes: ["1"], prices: {"1":60 }, retailPrices: {"1":60 } },
+{ id: 49, name: "Picnic", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["3"], prices: {"3":110 }, retailPrices: {"3":120 } },
+{ id: 50, name: "Lock dabbi small", category: "tiffins", image: "", sizes: ["small"], prices: {"small":40 }, retailPrices: {"small":42 } },
+{ id: 51, name: "Lock dabbi big", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["big"], prices: {"big":60 }, retailPrices: {"big":62 } },
     // Water Jugs
 { id: 31, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 250, "24": 500} },
 { id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5","10", "12.5", "18"], prices: {"5":360 , "7.5": 480, "10":585, "12.5":705 , "18": 890}, retailPrices: {"5":375 , "7.5": 500, "10":600, "12.5":730 , "18": 915} },
@@ -268,7 +273,7 @@ const products = [
 { id: 35, name: "Croma Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["1500/2000/3000","3000/4500/5500"], prices: { "1500/2000/3000":435,"3000/4500/5500":765}, retailPrices: {"1500/2000/3000":450,"3000/4500/5500":785} },
 { id: 36, name: "Cresto Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":710}, retailPrices: {"2400/3000/5000":740} },
 { id: 37, name: "Croma SS Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} },
-{ id: 47, name: "Zigma SS Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} }
+{ id: 52, name: "Zigma SS Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} }
 ];
 
 // Global variables
@@ -1327,6 +1332,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
