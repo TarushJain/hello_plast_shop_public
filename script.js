@@ -279,13 +279,13 @@ const products = [
     // Water Jugs
 { id: 31, name: "Croma Jug", category: "water jug", image: "CROMA_JUG_24_RED.jpg", sizes: ["6", "24"], prices: { "6": 230, "24": 485}, retailPrices: { "6": 250, "24": 500} },
 { id: 32, name: "Zigma Jug", category: "water jug", image: "zigma jug 18 black.jpg", sizes: ["5", "7.5","10", "12.5", "18"], prices: {"5":360 , "7.5": 480, "10":585, "12.5":705 , "18": 890}, retailPrices: {"5":375 , "7.5": 500, "10":600, "12.5":730 , "18": 915} },
-    //Sets
-{ id: 33, name: "Onyx Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["600/1500/1700","1500/1700/3500","1700/3500/5000"], prices: { "600/1500/1700":315,"1500/1700/3500":425,"1700/3500/5000":555}, retailPrices: {"600/1500/1700":320,"1500/1700/3500":435,"1700/3500/5000":570} },
-{ id: 34, name: "Casa Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":545}, retailPrices: {"2400/3000/5000":560} },
-{ id: 35, name: "Croma Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["1500/2000/3000","3000/4500/5500"], prices: { "1500/2000/3000":435,"3000/4500/5500":765}, retailPrices: {"1500/2000/3000":450,"3000/4500/5500":785} },
-{ id: 36, name: "Cresto Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":710}, retailPrices: {"2400/3000/5000":740} },
-{ id: 37, name: "Croma SS Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} },
-{ id: 52, name: "Zigma SS Set", category: "Sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} }
+     //Sets
+ { id: 33, name: "Onyx Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["600/1500/1700","1500/1700/3500","1700/3500/5000"], prices: { "600/1500/1700":315,"1500/1700/3500":425,"1700/3500/5000":555}, retailPrices: {"600/1500/1700":320,"1500/1700/3500":435,"1700/3500/5000":570} },
+ { id: 34, name: "Casa Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":545}, retailPrices: {"2400/3000/5000":560} },
+ { id: 35, name: "Croma Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["1500/2000/3000","3000/4500/5500"], prices: { "1500/2000/3000":435,"3000/4500/5500":765}, retailPrices: {"1500/2000/3000":450,"3000/4500/5500":785} },
+ { id: 36, name: "Cresto Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["2400/3000/5000"], prices: { "2400/3000/5000":710}, retailPrices: {"2400/3000/5000":740} },
+ { id: 37, name: "Croma SS Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} },
+ { id: 52, name: "Zigma SS Set", category: "sets", image: "Apple steel-p.jpg", sizes: ["2000/3000/4500"], prices: { "2000/3000/4500":700}, retailPrices: {"2000/3000/4500":720} }
 ];
 
 // Global variables
