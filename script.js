@@ -218,15 +218,15 @@ const products = [
     //Packaging
     { id: 1, name: "Packaging", category: "Packaging", image: "packaging.jpg", sizes: ["1"], prices: { "1":310 }, retailPrices: { "1":320 } },
     // Casseroles
-    /*done*/ { id: 7, name: "Cresto ", category: "casseroles", image: "cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 }, retailPrices: { "2400": 200, "3000": 230, "5000": 310 } },
-    /*done*/{ id: 2, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":125, "2000":145, "3000":195 , "4500":253,"5500":345,"7000":445} },
-    /*done*/{ id: 3, name: "Croma SS", category: "casseroles", image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 }, retailPrices: { "2000": 180, "3000": 230, "3500": 245 , "4500":320, "5000":340 } },
+{ id: 7, name: "Cresto ", category: "casseroles", image: "cresto.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 190, "3000": 220, "5000": 300 }, retailPrices: { "2400": 200, "3000": 230, "5000": 310 } },
+{ id: 2, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":118, "2000":140, "3000":190 , "4500":250,"5500":345,"7000":450} },
+{ id: 3, name: "Croma SS", category: "casseroles", image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 }, retailPrices: { "2000": 175, "3000": 230, "3500": 240 , "4500":320, "5000":340 } },
 { id: 4, name: "Cuba", category: "casseroles", image: "cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 }, retailPrices: { "1700": 130, "2000": 150, "3200": 195, "4500":280 } },
 { id: 5, name: "Lotus", category: "casseroles", image: "lotus blue.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 } },
 { id: 6, name: "Onyx", category: "casseroles", image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
-    /*done*/{ id: 8, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":180, "3000":230, "3500":245,"4200":290,"4500":320, "5000":340,"6000":390,"7500":490,"12500":715,"18000":900 } },
-    /*done*/{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330}, retailPrices: { "2000" : 200,  "3000" :250, "4200":310, "4500":340} },
-    /*done*/{ id: 31, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: ["2000",  "3000", "4500"], prices: { "2000" : 190,  "3000" :230, "4200":300, "4500":320}, retailPrices: { "2000" : 200,  "3000" :240, "4200":310, "4500":330} },
+{ id: 8, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 } },
+{ id: 9, name: "Zigma Deluxe", category: "casseroles", image: "ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000","4200", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330}, retailPrices: { "2000" : 195,  "3000" :245, "4200":305, "4500":340} },
+{ id: 31, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
     // Cookers
     /*done*/{ id: 10, name: "Handi Steel ", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":650, "5":690,"7":730,"10":1200,"12":1275,"15":1350}, retailPrices: {"3":660, "5":700,"7":740,"10":1210,"12":1285,"15":1360} },
     /*done*/{ id: 11, name: "Steel Cooker ", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: {"2":615,"3":635, "5":675,"7":715,"10":1175,"12":1250,"15":1325}, retailPrices: {"2":625,"3":645, "5":685,"7":725,"10":1185,"12":1260,"15":1335} },
@@ -1313,3 +1313,4 @@ function applyCartTax() {
         updateCart();
     }
 }
+
