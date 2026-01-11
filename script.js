@@ -216,17 +216,17 @@ async function printThermalBill() {
 // Product database - In a real app, this would come from a backend API
 const products = [
 //favourites
-{ id: 1, name: "Packaging", category: "favourites", image: "packaging.jpg", sizes: ["1"], prices: { "1":310 }, retailPrices: { "1":320 } },
-{ id: 9, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000","Set"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 ,"Set":700}, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 ,"Set":720} },
-{ id: 4, name: "Croma SS", category: "casseroles", image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000","Set"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 ,"Set":700}, retailPrices: { "2000": 175, "3000": 230, "3500": 240 , "4500":320, "5000":340 ,"Set":720} },
-{ id: 7, name: "Onyx", category: "casseroles", image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
-{ id: 3, name: "Croma ", category: "casseroles", image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":118, "2000":140, "3000":190 , "4500":250,"5500":345,"7000":450} },
-{ id: 6, name: "Lotus", category: "casseroles", image: "lotus blue.jpg", sizes: ["2400", "3000", "5000","Set"], prices: { "2400": 137, "3000": 165, "5000": 243,"Set":545 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 ,"Set":560} },
-{ id: 27, name: "Loto", category: "tiffins", image: "loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 }, retailPrices: {"2+1":165 , "3+1":180 , "4":200 } },
-{ id: 21, name: "Cammy ", category: "tiffins", image: "cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 }, retailPrices: { "3":255, "4": 322 } },
-{ id: 20, name: "Bonton", category: "tiffins", image: "BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 }, retailPrices: { "1": 85 } },
-{ id: 24, name: "Happytime", category: "tiffins", image: "HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 }, retailPrices: { "1": 65 } },
-{ id: 17, name: "Zigma Kettle", category: "kettles", image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 215, "1200": 225, "1600": 260 } },
+{ id: 1, name: "Packaging", category: ["favourites"], image: "packaging.jpg", sizes: ["1"], prices: { "1":310 }, retailPrices: { "1":320 } },
+{ id: 9, name: "Zigma ", category: ["casseroles", "favourites"], image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000","Set"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 ,"Set":700}, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 ,"Set":720} },
+{ id: 4, name: "Croma SS", category: ["casseroles", "favourites"], image: "croma ss 3000-black.jpg", sizes: ["2000", "3000", "3500","4500","5000","Set"], prices: { "2000": 170, "3000": 220, "3500": 235 , "4500":310, "5000":330 ,"Set":700}, retailPrices: { "2000": 175, "3000": 230, "3500": 240 , "4500":320, "5000":340 ,"Set":720} },
+{ id: 7, name: "Onyx", category: ["casseroles", "favourites"], image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
+{ id: 3, name: "Croma ", category: ["casseroles", "favourites"], image: "croma pink.jpg", sizes: ["1500", "2000", "3000", "4500","5500","7000"], prices: { "1500":115, "2000":135, "3000":185 , "4500":243,"5500":335,"7000":435}, retailPrices: { "1500":118, "2000":140, "3000":190 , "4500":250,"5500":345,"7000":450} },
+{ id: 6, name: "Lotus", category: ["casseroles", "favourites"], image: "lotus blue.jpg", sizes: ["2400", "3000", "5000","Set"], prices: { "2400": 137, "3000": 165, "5000": 243,"Set":545 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 ,"Set":560} },
+{ id: 27, name: "Loto", category: ["tiffins", "favourites"], image: "loto red.jpg", sizes: ["2+1", "3+1", "4"], prices: {"2+1":162 , "3+1":177 , "4":197 }, retailPrices: {"2+1":165 , "3+1":180 , "4":200 } },
+{ id: 21, name: "Cammy ", category: ["tiffins", "favourites"], image: "cammy_3_BROWN.jpg", sizes: ["3", "4"], prices: { "3":248, "4": 315 }, retailPrices: { "3":255, "4": 322 } },
+{ id: 20, name: "Bonton", category: ["tiffins", "favourites"], image: "BONTON_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 85 }, retailPrices: { "1": 85 } },
+{ id: 24, name: "Happytime", category: ["tiffins", "favourites"], image: "HAPPYTIME_TIFFEN.jpeg", sizes: ["1"], prices: { "1": 65 }, retailPrices: { "1": 65 } },
+{ id: 17, name: "Zigma Kettle", category: ["kettles", "favourites"], image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 215, "1200": 225, "1600": 260 } },
     
     // Casseroles
 { id: 2, name: "Cresto ", category: "casseroles", image: "cresto.jpg", sizes: ["2400", "3000", "5000","Set"], prices: { "2400": 190, "3000": 220, "5000": 300 ,"Set":710}, retailPrices: { "2400": 200, "3000": 230, "5000": 310 ,"Set":740} },
@@ -1350,6 +1350,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
