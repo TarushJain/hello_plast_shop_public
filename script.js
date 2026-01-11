@@ -536,7 +536,14 @@ function updateTime() {
 function displayProducts(category = 'all') {
     currentCategory = category;
     const productGrid = document.getElementById('product-grid');
-    const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+    const filteredProducts = category === 'all'
+  ? products
+  : products.filter(p =>
+      Array.isArray(p.category)
+        ? p.category.includes(category)
+        : p.category === category
+    );
+
     
     // Helper to get price based on mode
     function getDisplayPrice(product, size) {
@@ -1344,6 +1351,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
