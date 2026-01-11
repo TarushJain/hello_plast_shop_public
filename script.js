@@ -235,7 +235,7 @@ const products = [
 { id: 5, name: "Cuba", category: "casseroles", image: "cuba_red.jpg", sizes: ["1700", "2000", "3200", "4500"], prices: { "1700": 127, "2000": 145, "3200": 190, "4500":273 }, retailPrices: { "1700": 130, "2000": 150, "3200": 195, "4500":280 } },
 { id: 6, name: "Lotus", category: "casseroles", image: "lotus blue.jpg", sizes: ["2400", "3000", "5000"], prices: { "2400": 137, "3000": 165, "5000": 243 }, retailPrices: { "2400": 140, "3000": 170, "5000": 250 } },
 { id: 7, name: "Onyx", category: "casseroles", image: "onyx1500.png", sizes: ["600","1500","1700", "3500", "5000"], prices: { "600": 70, "1500":110, "1700":132 , "3500": 180, "5000": 243 }, retailPrices: { "600": 72, "1500":113, "1700":135 , "3500": 185, "5000": 250 } },
-{ id: 9, name: "Zigma ", category: "casseroles", image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 } },
+{ id: 9, name: "Zigma ", category: { "casseroles","Favourites" }, image: "ZIGMA 2000 - BLACK.png", sizes: ["2000", "3000", "3500","4200","4500", "5000","6000","7500","12500","18000"], prices: { "2000":170, "3000":220, "3500":235,"4200":280,"4500":310, "5000":330,"6000":380,"7500":480,"12500":705,"18000":890 }, retailPrices: { "2000":175, "3000":225, "3500":240,"4200":285,"4500":320, "5000":340,"6000":400,"7500":500,"12500":730,"18000":915 } },
 { id: 10, name: "Zigma Deluxe", category: "casseroles", image: "ZIGMA DELUXE 3000 - BLACK.png", sizes: ["2000",  "3000","4200", "4500"], prices: { "2000" : 190,  "3000" :240, "4200":300, "4500":330}, retailPrices: { "2000" : 195,  "3000" :245, "4200":305, "4500":340} },
 { id: 11, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
     // Cookers
@@ -253,7 +253,7 @@ const products = [
 
 { id: 46, name: "G-star 11G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":405, "5":425 }, retailPrices: {  "3":405, "5":425 } },
     // Kettles
-{ id: 15, name: "Coral Kettle", category: ["kettles","favourites"], image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
+{ id: 15, name: "Coral Kettle", category: ["kettles","Favourites"], image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
 { id: 16, name: "Cosmos Kettle", category: "kettles", image: "Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157}, retailPrices: { "800": 150, "1200": 160} },
 { id: 17, name: "Zigma Kettle", category: "kettles", image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 215, "1200": 225, "1600": 260 } },
     
@@ -1351,6 +1351,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
