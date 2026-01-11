@@ -253,7 +253,7 @@ const products = [
 
 { id: 46, name: "G-star 11G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":405, "5":425 }, retailPrices: {  "3":405, "5":425 } },
     // Kettles
-{ id: 15, name: "Coral Kettle", category: "kettles", image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
+{ id: 15, name: "Coral Kettle", category: ["kettles","favourites"], image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
 { id: 16, name: "Cosmos Kettle", category: "kettles", image: "Cosmo Kettle_blue.jpg", sizes: ["800", "1200"], prices: { "800": 147, "1200": 157}, retailPrices: { "800": 150, "1200": 160} },
 { id: 17, name: "Zigma Kettle", category: "kettles", image: "zigma_kettle.jpg", sizes: ["800", "1200", "1600"], prices: { "800": 210, "1200": 220, "1600": 250 }, retailPrices: { "800": 215, "1200": 225, "1600": 260 } },
     
@@ -273,7 +273,7 @@ const products = [
 { id: 30, name: "Flora", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["Steel"], prices: {"Steel":263 }, retailPrices: {"Steel":270 } },
 { id: 47, name: "Crystal", category: "tiffins", image: "flora_tn.jpeg", sizes: ["1","2"], prices: {"1":55,"2":88 }, retailPrices: {"1":57,"2":92} },
 { id: 48, name: "Tip Top", category: "tiffins", image: "flora_in.jpeg", sizes: ["1"], prices: {"1":60 }, retailPrices: {"1":60 } },
-{ id: 49, name: "Picnic", category: "tiffins", image: "flora_tiffin.jpeg", sizes: ["3"], prices: {"3":110 }, retailPrices: {"3":120 } },
+{ id: 49, name: "Picnic", category: "tiffins", image: "floran.jpeg", sizes: ["3"], prices: {"3":110 }, retailPrices: {"3":120 } },
 { id: 50, name: "Lock dabbi small", category: "tiffins", image: "lock dabbi small.jpeg", sizes: ["small"], prices: {"small":40 }, retailPrices: {"small":42 } },
 { id: 51, name: "Lock dabbi big", category: "tiffins", image: "Lock dabbi big.jpeg", sizes: ["big"], prices: {"big":60 }, retailPrices: {"big":62 } },
     // Water Jugs
@@ -1344,6 +1344,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
