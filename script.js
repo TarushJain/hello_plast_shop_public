@@ -243,14 +243,18 @@ const products = [
 { id: 52, name: "Royal induction", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7"], prices: { "2":705,"3":725, "5":765,"7":805}, retailPrices: { "2":705,"3":725, "5":765,"7":805} },
 { id: 39, name: "Royal (anodise)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5","7"], prices: { "3":945, "5":995,"7":1045}, retailPrices: { "3":945, "5":995,"7":1045} },
 { id: 12, name: "Handi (ISI)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425}, retailPrices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425} },
+{ id: 53, name: "Handi induction", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7"], prices: {"3":740, "5":780,"7":820}, retailPrices: {"3":740, "5":780,"7":820} },    
 { id: 13, name: "Handi (anodise)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7"], prices: { "3":960, "5":1010,"7":1060}, retailPrices: {  "3":960, "5":1010,"7":1060 } }, 
 { id: 14, name: "Matki (ISI)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5","7"], prices: { "2":525, "3":700, "5":740,"7":780}, retailPrices: {"2":525, "3":700, "5":740,"7":780} },
+{ id: 54, name: "Matki induction", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["2", "3", "5"], prices: { "2":565, "3":740, "5":780}, retailPrices: { "2":565, "3":740, "5":780} },    
 { id: 40, name: "Outer-Lid (ISI)", category: "cookers", image: "matki_steel_5.png", sizes: ["3", "5"], prices: { "3":685, "5":755 }, retailPrices: {  "3":685, "5":755 } },
 { id: 41, name: "Matki steel(Tri-ply)", category: "cookers", image: "matki_steel_5Ltr..png", sizes: ["3", "5"], prices: { "3":1150, "5":1250 }, retailPrices: {  "3":1150, "5":1250 } },     
 { id: 42, name: "Royal steel (Triply)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":1100, "5":1200 }, retailPrices: {  "3":1100, "5":1200 } },   
 { id: 43, name: "Lagan 8G (ISI)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5","7"], prices: { "3":580, "5":600,"7":620 }, retailPrices: { "3":580, "5":600,"7":620 } },
 { id: 44, name: "Hello 10G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["1.5","2","3", "5","7"], prices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 }, retailPrices: { "1.5":405,"2":475,"3":485, "5":505,"7":525 } },
+{ id: 55, name: "Hello 10G induction", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["1.5","2","3", "5","7"], prices: { "1.5":445,"2":515,"3":525, "5":545,"7":565 }, retailPrices: { "1.5":445,"2":515,"3":525, "5":545,"7":565  } },    
 { id: 45, name: "Lagan Handi 10G", category: "cookers", image: "handi_page.jpg", sizes: ["2","3", "5","8"], prices: {"2":435 ,"3":510, "5":530, "8":560 }, retailPrices: {"2":435 ,"3":510, "5":530, "8":560  } },
+{ id: 56, name: "Lagan Handi 10G", category: "cookers", image: "handi_page.jpg", sizes: ["2","3", "5","8"], prices: {"2":475 ,"3":550, "5":570, "8":610 }, retailPrices: {"2":475 ,"3":550, "5":570, "8":610 } },
 { id: 46, name: "G-star 11G", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5"], prices: { "3":405, "5":425 }, retailPrices: {  "3":405, "5":425 } },
     // Kettles
 { id: 15, name: "Coral Kettle", category: "kettles", image: "coral kattle green.jpg", sizes:["1"], prices: { "1":210 }, retailPrices: { "1":215 }},
@@ -1351,6 +1355,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
