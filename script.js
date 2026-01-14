@@ -240,6 +240,7 @@ const products = [
 { id: 11, name: "Zigma Handi", category: "casseroles", image: "zigma_handi.jpeg", sizes: [ "3000", "4500"], prices: { "3000" :230, "4500":320}, retailPrices: { "3000" :235, "4500":330} },
     // Cookers
 { id: 38, name: "Royal(ISI)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7","10","12","15"], prices: { "2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400}, retailPrices: {"2":665,"3":685, "5":725,"7":765,"10":1250,"12":1325,"15":1400 } },
+{ id: 52, name: "Royal induction", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["2","3", "5","7"], prices: { "2":705,"3":725, "5":765,"7":805}, retailPrices: { "2":705,"3":725, "5":765,"7":805} },
 { id: 39, name: "Royal (anodise)", category: "cookers", image: "hello_Steel_cooker_plain.jpg", sizes: ["3", "5","7"], prices: { "3":945, "5":995,"7":1045}, retailPrices: { "3":945, "5":995,"7":1045} },
 { id: 12, name: "Handi (ISI)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7","10","12","15"], prices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425}, retailPrices: {"3":700, "5":740,"7":780,"10":1275,"12":1350,"15":1425} },
 { id: 13, name: "Handi (anodise)", category: "cookers", image: "handi_page.jpg", sizes: ["3", "5","7"], prices: { "3":960, "5":1010,"7":1060}, retailPrices: {  "3":960, "5":1010,"7":1060 } }, 
@@ -1350,6 +1351,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
