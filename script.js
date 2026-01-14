@@ -1206,7 +1206,7 @@ function generateBill() {
                 <tr>
                     <td style="padding:4px; font-weight: bold;">${name}</td>
                     <td style="text-align:center;padding:4px">${size}</td>
-                    <td style="text-align:center;padding:4px">${qty}</td>
+                    <td style="text-align:center;padding:4px">${qty} Pcs</td>
                     <td style="text-align:center;padding:4px">₹${price.toFixed(2)}</td>
                     <td style="text-align:right;padding:4px">₹${lineTotal.toFixed(2)}</td>
                 </tr>`;
@@ -1350,6 +1350,7 @@ function applyCartTax() {
         updateCart();
     }
 }
+
 
 
 
